@@ -12,8 +12,8 @@
 #include "Target.h"
 
 double targetX;
-const double centerX = 120.0;
-const double tolX = 20.0;
+const double centerX = 360.0;
+const double tolX = 7.0;
 
 bool targeted;
 
@@ -40,10 +40,10 @@ void Target::Execute() {
 	targetX = Robot::targeting->GetTarget();
 
 	if (targetX > centerX + tolX) {
-		Robot::chassis->Drive(0.5, -0.5);
+		Robot::chassis->Drive(0.45, -0.45);
 	} else if (targetX < centerX - tolX) {
-		Robot::chassis->Drive(-0.5, 0.5);
-	} else if ((targetX < centerX + tolX) && (targetX > centerX - tolX)) {
+		Robot::chassis->Drive(-0.45, 0.45);
+	} else if ((targetX <= centerX + tolX) && (targetX >= centerX - tolX)) {
 		Robot::chassis->Drive(0.0, 0.0);
 		targeted = true;
 	}

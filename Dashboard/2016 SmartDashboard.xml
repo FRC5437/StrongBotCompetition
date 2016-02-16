@@ -1,0 +1,82 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="AutoPos3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="161"/>
+	</widget>
+	<widget field="AutoPos4" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="121"/>
+	</widget>
+	<widget field="Distance from target" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="94"/>
+	</widget>
+	<widget field="Reset Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="54"/>
+	</widget>
+	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="27"/>
+	</widget>
+	<widget field="Wait for IsRotating()" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.VideoStreamViewerExtension">
+		<location x="619" y="1"/>
+		<width>1518</width>
+		<height>1362</height>
+		<property name="Camera IP Address or mDNS name" value="10.54.37.11"/>
+	</static-widget>
+	<widget field="CrossDefense" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2396" y="72"/>
+	</widget>
+	<widget field="AutoPos5" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2669" y="15"/>
+	</widget>
+	<widget field="DriveRobot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2399" y="287"/>
+	</widget>
+	<widget field="AutoPos1" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2157" y="11"/>
+	</widget>
+	<widget field="PrepShooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2142" y="141"/>
+	</widget>
+	<widget field="AutoPos2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2312" y="11"/>
+	</widget>
+	<widget field="Climb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2481" y="206"/>
+	</widget>
+	<widget field="PrepToClimb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2278" y="207"/>
+	</widget>
+	<widget field="Auto Modes" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="2416" y="431"/>
+	</widget>
+	<widget field="RotateDegrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2145" y="289"/>
+	</widget>
+	<widget field="LoadBoulder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2625" y="139"/>
+	</widget>
+	<widget field="Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2654" y="289"/>
+	</widget>
+	<widget field="AutoPos3and4" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2469" y="14"/>
+	</widget>
+	<widget field="FireBoulder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2391" y="138"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="left slave encoder"/>
+	<hidden field="right encoder"/>
+	<hidden field="init"/>
+	<hidden field="right slave encoder"/>
+	<hidden field="initdegrees"/>
+	<hidden field="displacement"/>
+	<hidden field="left encoder"/>
+	<hidden field="pitch"/>
+	<hidden field="yaw"/>
+	<hidden field="turndegrees"/>
+</xml>
