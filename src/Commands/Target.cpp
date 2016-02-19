@@ -16,11 +16,17 @@
 
 double targetX;
 double targetDistance; //distance between camera and target
-double centerDistance; //quite literally the difference between the two detected centers
+double centerDistancePixels; //quite literally the difference between the two detected centers
 double degreesToRotate;
 double currentYaw;
-const double centerX = 360.0;
+const double centerOfImageX = 320.0;
+const double centerOfImageY = 240.0;
+const double widthOfImage = 640.0;
+const double heightOfImage = 480.0;
+const double fieldOfViewDegrees = 67.0;
 const double tolX = 7.0;
+
+double percentageOfFieldOfViewToMove = 0.0;
 
 bool rightDirection = true;
 
@@ -39,22 +45,22 @@ Target::Target(): Command() {
 
 // Called just before this Command runs the first time
 void Target::Initialize() {
-	currentYaw = Robot::navX->ahrs->GetYaw();
+	/*currentYaw = Robot::navX->ahrs->GetYaw();
 	targetX = Robot::targeting->GetTarget();
-	if (targetX > 360.0) {
-		centerDistance = targetX - 360.0;
-		rightDirection = true;
-	} else if (targetX < 360.0) {
-		centerDistance = 360.0 - targetX;
-		rightDirection = false;
-	}
-	degreesToRotate = atan(centerDistance/595) * 180 / PI; //595 = focal length
+	centerDistancePixels = targetX - centerOfImageX;
+	percentageOfFieldOfViewToMove = centerDistancePixels / widthOfImage;
+	//degreesToRotate = atan(centerDistancePixels/633.6) * 180 / PI; //595 = focal length
+
+	degreesToRotate = fieldOfViewDegrees * percentageOfFieldOfViewToMove;
+	SmartDashboard::PutNumber("CHHdegreesToRotate", degreesToRotate);
+	SmartDashboard::PutNumber("CHHcurrentYaw", currentYaw);
+	SmartDashboard::PutNumber("CHHtargetYaw", currentYaw + degreesToRotate);
+	SmartDashboard::PutNumber("CHHcenterDistancePixels", centerDistancePixels);
+	SmartDashboard::PutNumber("CHHtargetX", targetX);
 	Robot::chassis->Enable();
-	if (rightDirection == true) {
-		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
-	} else if (rightDirection == false) {
-		Robot::chassis->SetSetpoint(currentYaw-degreesToRotate);
-	}
+	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);*/
+	Robot::chassis->Enable();
+	Robot::chassis->SetSetpoint(0.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
