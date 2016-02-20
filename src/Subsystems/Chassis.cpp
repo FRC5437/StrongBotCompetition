@@ -4,9 +4,9 @@
 #include "../Commands/DriveRobot.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
-static double kP = 0.03;
-static double kI = 0.004;
-static double kD = 0.002;
+static double kP = 0.09;
+static double kI = 0.002;
+static double kD = 0.0; //0.004;
 static double kF = 0.0;
 
 Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
