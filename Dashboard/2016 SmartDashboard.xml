@@ -1,5 +1,55 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="POV" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="605"/>
+	</widget>
+	<widget field="Center On Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="565"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.VideoStreamViewerExtension">
+		<location x="301" y="18"/>
+		<width>1833</width>
+		<height>1318</height>
+	</static-widget>
+	<widget field="CHHtargetX" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="538"/>
+	</widget>
+	<widget field="CHHcenterDistancePixels" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="511"/>
+	</widget>
+	<widget field="CHHtargetYaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="484"/>
+	</widget>
+	<widget field="CHHcurrentYaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="457"/>
+	</widget>
+	<widget field="CHHdegreesToRotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="430"/>
+	</widget>
+	<widget field="Starting Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="403"/>
+	</widget>
+	<widget field="Degrees To Rotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="376"/>
+	</widget>
+	<widget field="Degrees to rotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="349"/>
+	</widget>
+	<widget field="Drive To Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="309"/>
+	</widget>
+	<widget field="left encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="282"/>
+	</widget>
+	<widget field="left slave encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="255"/>
+	</widget>
+	<widget field="right encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="228"/>
+	</widget>
+	<widget field="right slave encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="201"/>
+	</widget>
 	<widget field="AutoPos3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="161"/>
 	</widget>
@@ -18,12 +68,6 @@
 	<widget field="Wait for IsRotating()" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="0"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.VideoStreamViewerExtension">
-		<location x="619" y="1"/>
-		<width>1518</width>
-		<height>1362</height>
-		<property name="Camera IP Address or mDNS name" value="10.54.37.11"/>
-	</static-widget>
 	<widget field="CrossDefense" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="2396" y="72"/>
 	</widget>
@@ -68,15 +112,80 @@
 	</widget>
 </dashboard>
 <live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="CANTalon[3]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="22"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CANTalon[4]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="207"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<location x="472" y="890"/>
+		<width>339</width>
+		<height>399</height>
+	</widget>
+	<widget field="Pullup" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="CAN Talon 1" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="22"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 2" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="207"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<location x="0" y="826"/>
+		<width>339</width>
+		<height>399</height>
+	</widget>
+	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Double Solenoid 1" type="Double Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="6" y="22"/>
+			<height>26</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 1" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="48"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 2" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="233"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 3" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="418"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 4" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="603"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<location x="768" y="54"/>
+		<width>339</width>
+		<height>795</height>
+	</widget>
+	<widget field="Chassis" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="CAN Talon 2" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="22"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<widget field="CAN Talon 1" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="207"/>
+			<height>185</height>
+			<width>327</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>339</width>
+		<height>399</height>
+	</widget>
 </live-window>
-	<hidden field="left slave encoder"/>
-	<hidden field="right encoder"/>
-	<hidden field="init"/>
-	<hidden field="right slave encoder"/>
-	<hidden field="initdegrees"/>
-	<hidden field="displacement"/>
-	<hidden field="left encoder"/>
-	<hidden field="pitch"/>
-	<hidden field="yaw"/>
-	<hidden field="turndegrees"/>
 </xml>

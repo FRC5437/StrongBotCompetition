@@ -41,20 +41,10 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	currentYaw = Robot::navX->ahrs->GetYaw();
 	targetX = Robot::targeting->GetTarget();
-	if (targetX > 360.0) {
-		centerDistance = targetX - 360.0;
-		rightDirection = true;
-	} else if (targetX < 360.0) {
-		centerDistance = 360.0 - targetX;
-		rightDirection = false;
-	}
+	centerDistance = targetX - 360.0;
 	degreesToRotate = atan(centerDistance/595) * 180 / PI; //595 = focal length
 	Robot::chassis->Enable();
-	if (rightDirection == true) {
-		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
-	} else if (rightDirection == false) {
-		Robot::chassis->SetSetpoint(currentYaw-degreesToRotate);
-	}
+	Robot::chassis->SetSetpoint(currentYaw + degreesToRotate);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -71,6 +61,7 @@ bool Target::IsFinished() {
 void Target::End() {
 	rightDirection = true;
 	Robot::chassis->Disable();
+	Wait(0.5);
 }
 
 // Called when another command which requires one or more of the same
