@@ -63,6 +63,20 @@ double Targeting::GetTarget() {
 	return targetx;
 }
 
+double Targeting::GetTargetHeight() {
+	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
+			centerY = grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>());
+
+	double targetWidth = -1.0, temp = 0.0;
+	for (uint i = 0; i < widths.size(); i++) {
+		if (widths[i] > targetWidth) {
+			targetWidth = widths[i];
+			temp = centerY[i];
+		}
+	}
+	return temp;
+}
+
 double Targeting::GetDistance() {
 	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>());
 

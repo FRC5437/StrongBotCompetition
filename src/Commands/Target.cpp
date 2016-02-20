@@ -15,12 +15,22 @@
 #define PI 3.14159265
 
 double targetX;
+double targetY;
+double targetHeight;
+double bottomWidthFOV;
+double widthFOVOffset;
+double targetWidthFOV;
 double targetDistance; //distance between camera and target
+double fieldOfViewHeight;
+double fieldOfViewPixelHeight;
 double centerDistance; //quite literally the difference between the two detected centers
 double degreesToRotate;
 double currentYaw;
+double centerDistanceInches;
+double inchesPerPixelX;
 const double centerX = 360.0;
 const double tolX = 7.0;
+const double pixels_x_per_pixel_y = 0.000104166666666666666666666666667;
 
 bool rightDirection = true;
 
@@ -41,22 +51,21 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	currentYaw = Robot::navX->ahrs->GetYaw();
 	targetX = Robot::targeting->GetTarget();
-	if (targetX > 360.0) {
-		centerDistance = targetX - 360.0;
-		rightDirection = true;
-	} else if (targetX < 360.0) {
-		centerDistance = 360.0 - targetX;
-		rightDirection = false;
-	}
-	degreesToRotate = atan(centerDistance/595) * 180 / PI; //595 = focal length
+	targetDistance = Robot::targeting->GetDistance();
+	fieldOfViewHeight = targetDistance * 0.794;
+	fieldOfViewPixelHeight = fieldOfViewHeight / 480;
+	targetY = Robot::targeting->GetTargetHeight();
+	targetHeight = targetY * fieldOfViewPixelHeight;
+	bottomWidthFOV = targetHeight * 0.94;
+	widthFOVOffset = (fieldOfViewPixelHeight * pixels_x_per_pixel_y);
+	targetWidthFOV = widthFOVOffset + bottomWidthFOV;
+	centerDistance = targetX - 320.0;
+	inchesPerPixelX = targetWidthFOV / 640;
+	centerDistanceInches = centerDistance * inchesPerPixelX;
+	degreesToRotate = asin(centerDistanceInches/targetDistance) * 180 / PI; //595 = focal length
 	Robot::chassis->Enable();
-	if (rightDirection == true) {
-		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
-	} else if (rightDirection == false) {
-		Robot::chassis->SetSetpoint(currentYaw-degreesToRotate);
-	}
+	Robot::chassis->SetSetpoint(currentYaw + degreesToRotate);
 }
-
 // Called repeatedly when this Command is scheduled to run
 void Target::Execute() {
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
