@@ -48,7 +48,7 @@ void Target::Initialize() {
 	double targetHeight = targetResults[3];
 
 	centerDistance = targetX - 360.0;
-	double knownWidthInches = 17.32; //TODO make this dynamic based on skew to target
+	double knownWidthInches = AdjustTargetWidthForSkew(targetWidth, targetHeight);
 	double distanceToTargetInches = (FOCAL_LENGTH * knownWidthInches)/ targetWidth;
 	double moveWidthInches = (distanceToTargetInches * centerDistance)/FOCAL_LENGTH;
 
@@ -60,6 +60,9 @@ void Target::Initialize() {
 	SmartDashboard::PutNumber("CHHtargetYaw", currentYaw+degreesToRotate);
 	SmartDashboard::PutNumber("CHHcenterDistancePixels", centerDistance);
 	SmartDashboard::PutNumber("CHHtargetX", targetX);
+	SmartDashboard::PutNumber("CHHDistanceToTargetInches", distanceToTargetInches);
+	SmartDashboard::PutNumber("CHHmoveWidthInches", moveWidthInches);
+	SmartDashboard::PutNumber("CHHknownWidthInches", knownWidthInches);
 
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 	Robot::chassis->Enable();
