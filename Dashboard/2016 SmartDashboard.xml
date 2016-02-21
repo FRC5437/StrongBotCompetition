@@ -1,5 +1,38 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="CHHtargetX" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="443"/>
+	</widget>
+	<widget field="CHHcenterDistancePixels" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="416"/>
+	</widget>
+	<widget field="CHHtargetYaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="389"/>
+	</widget>
+	<widget field="CHHcurrentYaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="362"/>
+	</widget>
+	<widget field="CHHdegreesToRotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="335"/>
+	</widget>
+	<static-widget class="edu.wpi.grip.smartdashboard.GRIPExtension">
+		<location x="406" y="28"/>
+		<width>1686</width>
+		<height>1261</height>
+		<property name="FPS" value="10"/>
+	</static-widget>
+	<widget field="POV" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="308"/>
+	</widget>
+	<widget field="Center On Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="268"/>
+	</widget>
+	<widget field="Degrees to rotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="241"/>
+	</widget>
+	<widget field="Drive To Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="201"/>
+	</widget>
 	<widget field="AutoPos3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="161"/>
 	</widget>
@@ -18,12 +51,6 @@
 	<widget field="Wait for IsRotating()" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="0"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.VideoStreamViewerExtension">
-		<location x="619" y="1"/>
-		<width>1518</width>
-		<height>1362</height>
-		<property name="Camera IP Address or mDNS name" value="10.54.37.11"/>
-	</static-widget>
 	<widget field="CrossDefense" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="2396" y="72"/>
 	</widget>
@@ -69,14 +96,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="left slave encoder"/>
-	<hidden field="right encoder"/>
-	<hidden field="init"/>
-	<hidden field="right slave encoder"/>
-	<hidden field="initdegrees"/>
-	<hidden field="displacement"/>
-	<hidden field="left encoder"/>
-	<hidden field="pitch"/>
-	<hidden field="yaw"/>
-	<hidden field="turndegrees"/>
 </xml>

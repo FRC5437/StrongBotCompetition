@@ -45,22 +45,30 @@ void Targeting::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-double Targeting::GetTarget() {
-	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
-			centerX = grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>());
+double* Targeting::GetTarget() {
+	double results[4];
+	auto areas = grip->GetNumberArray("myContoursReport/area", llvm::ArrayRef<double>()),
+		 centerX = grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>()),
+		 centerY = grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>()),
+		 width = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
+		 height = grip->GetNumberArray("myContoursReport/height", llvm::ArrayRef<double>());
 
-	double targetWidth = -1.0, temp = 0.0;
-	for (uint i = 0; i < widths.size(); i++) {
-		if (widths[i] > targetWidth) {
-			targetWidth = widths[i];
-			temp = centerX[i];
+	double targetWidth = -1.0;
+	int index = -1;
+	for (uint i = 0; i < areas.size(); i++) {
+		if (areas[i] > targetWidth) {
+			targetWidth = areas[i];
+			index = i;
 		}
 	}
 
 	if (targetWidth >= 0.0) {
-		targetx = temp;
+		results[0] = centerX[index];
+		results[1] = centerY[index];
+		results[2] = width[index];
+		results[3] = height[index];
 	}
-	return targetx;
+	return results;
 }
 
 double Targeting::GetDistance() {
