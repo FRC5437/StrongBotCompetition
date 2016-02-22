@@ -31,43 +31,23 @@ RotateDegrees::RotateDegrees(int targetDegrees): Command() {
 
 // Called just before this Command runs the first time
 void RotateDegrees::Initialize() {
-	Robot::navX->ahrs->ZeroYaw();
-	Wait(0.08);
-	initDegrees = (Robot::navX->YawGet360());
-	turnDegrees = initDegrees-degrees;
-	if (turnDegrees > initDegrees) {
-		rightDir = true;
-	}
-
-	if (turnDegrees >= 360) {
-		turnDegrees = turnDegrees % 360;
-	}
-
-	if (turnDegrees <= 0) {
-		turnDegrees = turnDegrees % 360 + 360;
-	}
+	Robot::chassis->Enable();
+	Robot::chassis->SetSetpoint(degrees);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RotateDegrees::Execute() {
-	if (rightDir == true) {
-		Robot::chassis->Drive(0.75, -0.75);
-	} else if (rightDir == false) {
-		Robot::chassis->Drive(-0.75, 0.75);
-	} else {
-		Robot::chassis->Drive(0.0, 0.0);
-	}
-	Wait(0.05);
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool RotateDegrees::IsFinished() {
-    return ((Robot::navX->YawGet360()) <= (turnDegrees + 3) && (Robot::navX->YawGet360()) >= (turnDegrees - 3));
+    return Robot::chassis->OnTarget();
 }
 
 // Called once after isFinished returns true
 void RotateDegrees::End() {
-	Robot::chassis->Drive(0.0, 0.0);
+Robot::chassis->Disable();
 }
 
 // Called when another command which requires one or more of the same

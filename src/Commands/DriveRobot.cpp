@@ -31,6 +31,7 @@ void DriveRobot::Initialize() {
 void DriveRobot::Execute() {
 	Robot::chassis->Drive(Robot::oi->getjoy1(), Robot::oi->getjoy2());
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
+	SmartDashboard::PutNumber("POV", Robot::oi->getjoy1()->GetPOV());
 }
 
 // Make this return true when this Command no longer needs to run execute()

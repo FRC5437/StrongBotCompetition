@@ -109,6 +109,7 @@ bool Target::IsFinished() {
 // Called once after isFinished returns true
 void Target::End() {
 	Robot::chassis->Disable();
+	Wait(0.35);
 }
 
 // Called when another command which requires one or more of the same
