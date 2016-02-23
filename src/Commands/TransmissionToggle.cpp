@@ -12,18 +12,17 @@ TransmissionToggle::TransmissionToggle()
 // Called just before this Command runs the first time
 void TransmissionToggle::Initialize()
 {
-	if (transmissionForward == false) {
-		Robot::transmission->Forward();
-		transmissionForward = true;
-	} else {
-		Robot::transmission->Reverse();
-		transmissionForward = false;
-	}
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TransmissionToggle::Execute()
 {
+	if ((Robot::oi->getjoy1()->GetRawButton(1)) && (Robot::oi->getjoy2()->GetRawButton(1))) {
+		Robot::transmission->HighGear();
+	} else {
+		Robot::transmission->LowGear();
+	}
 
 }
 

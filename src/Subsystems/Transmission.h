@@ -12,8 +12,8 @@ private:
 public:
 	Transmission();
 	void InitDefaultCommand();
-	void Forward();
-	void Reverse();
+	void HighGear();
+	void LowGear();
 };
 
 #endif

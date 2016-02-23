@@ -1,5 +1,6 @@
 #include "Transmission.h"
 #include "../RobotMap.h"
+#include "../Commands/TransmissionToggle.h"
 
 std::shared_ptr<Solenoid> transmissionSolenoid;
 
@@ -16,14 +17,15 @@ void Transmission::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new TransmissionToggle());
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Transmission::Forward() {
+void Transmission::HighGear() {
 	transmissionSolenoid->Set(On);
 }
 
-void Transmission::Reverse() {
+void Transmission::LowGear() {
 	transmissionSolenoid->Set(Off);
 }

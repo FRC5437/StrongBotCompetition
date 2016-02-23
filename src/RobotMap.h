@@ -26,7 +26,7 @@ public:
 	static std::shared_ptr<CANTalon> chassisCANTalon1;
 	static std::shared_ptr<CANTalon> chassisCANTalon2;
 	static std::shared_ptr<RobotDrive> chassisRobotDrive21;
-	static std::shared_ptr<DoubleSolenoid> shooterDoubleSolenoid1;
+	static std::shared_ptr<Solenoid> shooterSolenoid1;
 	static std::shared_ptr<CANTalon> shooterCANTalon1;
 	static std::shared_ptr<CANTalon> shooterCANTalon2;
 	static std::shared_ptr<CANTalon> shooterCANTalon3;

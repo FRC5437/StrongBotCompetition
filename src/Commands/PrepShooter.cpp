@@ -30,18 +30,18 @@ void PrepShooter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PrepShooter::Execute() {
-	Robot::shooter->Angle();
+	//Robot::shooter->Angle();
 	Robot::shooter->SpinUpTheWheels();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool PrepShooter::IsFinished() {
-    return IsTimedOut();
+	return false;
 }
 
 // Called once after isFinished returns true
 void PrepShooter::End() {
-
+	Robot::shooter->Stop();
 }
 
 // Called when another command which requires one or more of the same

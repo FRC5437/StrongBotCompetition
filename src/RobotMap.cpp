@@ -17,7 +17,7 @@
 std::shared_ptr<CANTalon> RobotMap::chassisCANTalon1;
 std::shared_ptr<CANTalon> RobotMap::chassisCANTalon2;
 std::shared_ptr<RobotDrive> RobotMap::chassisRobotDrive21;
-std::shared_ptr<DoubleSolenoid> RobotMap::shooterDoubleSolenoid1;
+std::shared_ptr<Solenoid> RobotMap::shooterSolenoid1;
 std::shared_ptr<CANTalon> RobotMap::shooterCANTalon1;
 std::shared_ptr<CANTalon> RobotMap::shooterCANTalon2;
 std::shared_ptr<CANTalon> RobotMap::shooterCANTalon3;
@@ -48,16 +48,21 @@ void RobotMap::init() {
         chassisRobotDrive21->SetSensitivity(0.5);
         chassisRobotDrive21->SetMaxOutput(1.0);
 
-    shooterDoubleSolenoid1.reset(new DoubleSolenoid(0, 0, 1));
-    lw->AddActuator("Shooter", "Double Solenoid 1", shooterDoubleSolenoid1);
+    shooterSolenoid1.reset(new Solenoid(0, 0));
+    lw->AddActuator("Shooter", "Solenoid 1", shooterSolenoid1);
     
     shooterCANTalon1.reset(new CANTalon(5));
+    shooterCANTalon1->SetControlMode(CANSpeedController::kSpeed);
     lw->AddActuator("Shooter", "CAN Talon 1", shooterCANTalon1);
     
     shooterCANTalon2.reset(new CANTalon(6));
+    shooterCANTalon2->SetControlMode(CANSpeedController::kSpeed);
     lw->AddActuator("Shooter", "CAN Talon 2", shooterCANTalon2);
     
     shooterCANTalon3.reset(new CANTalon(7));
+    shooterCANTalon3->ConfigFwdLimitSwitchNormallyOpen(false);
+    shooterCANTalon3->ConfigRevLimitSwitchNormallyOpen(false);
+    shooterCANTalon3->SetControlMode(CANSpeedController::kPosition);
     lw->AddActuator("Shooter", "CAN Talon 3", shooterCANTalon3);
     
     shooterCANTalon4.reset(new CANTalon(8));

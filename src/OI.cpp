@@ -81,9 +81,7 @@ OI::OI() {
     b3_4.reset(new JoystickButton(joy3.get(), 4));
     b3_4->WhenPressed(new Target());
 
-    while (joy1->GetRawButton(1)) {
-    	b2_1->WhenPressed(new TransmissionToggle());
-    }
+
 
     SmartDashboard::PutData("Reset Yaw", new ResetYaw());
     SmartDashboard::PutData("Center On Target", new CenterOnTarget());

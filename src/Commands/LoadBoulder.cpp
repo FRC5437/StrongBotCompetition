@@ -25,12 +25,11 @@ LoadBoulder::LoadBoulder(): Command() {
 
 // Called just before this Command runs the first time
 void LoadBoulder::Initialize() {
-
+	Robot::shooter->Load();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void LoadBoulder::Execute() {
-	Robot::shooter->Load();
 }
 
 // Make this return true when this Command no longer needs to run execute()
