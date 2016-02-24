@@ -79,9 +79,9 @@ void Shooter::Stop() {
 	Solenoid1->Set(false);
 }
 
-void Shooter::Angle() {
+void Shooter::Angle(double setpoint) {
 	cANTalon3->Enable();
-    cANTalon3->SetSetpoint(1023);
+    cANTalon3->SetSetpoint(setpoint);
 
 
 

@@ -41,7 +41,7 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	currentYaw = Robot::navX->ahrs->GetYaw();
 	targetX = Robot::targeting->GetTarget();
-	centerDistance = targetX - 360.0;
+	centerDistance = targetX - 320.0;
 	degreesToRotate = atan(centerDistance/595) * 180 / PI; //595 = focal length
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw + degreesToRotate);
