@@ -25,12 +25,14 @@ Shooter::Shooter() : Subsystem("Shooter") {
     Solenoid1 = RobotMap::shooterSolenoid1;
     cANTalon1 = RobotMap::shooterCANTalon1;
     cANTalon1->Disable();
-    cANTalon1->SetFeedbackDevice(CANTalon::QuadEncoder);
+    cANTalon1->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
     cANTalon1->SetSensorDirection(true);
+    cANTalon1->SetInverted(true);
     cANTalon2 = RobotMap::shooterCANTalon2;
     cANTalon2->Disable();
-    cANTalon2->SetFeedbackDevice(CANTalon::QuadEncoder);
+    cANTalon2->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
     cANTalon2->SetSensorDirection(true);
+    cANTalon2->SetInverted(false);
     cANTalon3 = RobotMap::shooterCANTalon3;
     cANTalon3->Disable();
     cANTalon3->SetFeedbackDevice(CANTalon::AnalogEncoder);
@@ -52,16 +54,16 @@ void Shooter::InitDefaultCommand() {
 // here. Call these from Commands.
 void Shooter::Load() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(7000);
+	cANTalon1->SetSetpoint(4000);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(-7000);
+	cANTalon2->SetSetpoint(4000);
 }
 
 void Shooter::SpinUpTheWheels() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(-10000);
+	cANTalon1->SetSetpoint(-4500);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(-10000);
+	cANTalon2->SetSetpoint(-4500);
 }
 
 void Shooter::Fire() {
@@ -77,8 +79,11 @@ void Shooter::Stop() {
 	Solenoid1->Set(false);
 }
 
-void Shooter::Angle() {
+void Shooter::Angle(double val) {
 	cANTalon3->Enable();
-	cANTalon3->SetSetpoint(512);
+    cANTalon3->Set(val);
+
+
+
 	//cANTalon3->Set(joystick);
 }

@@ -30,7 +30,7 @@ void PrepShooter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PrepShooter::Execute() {
-	//Robot::shooter->Angle();
+	Robot::shooter->Angle(Robot::oi->getjoy3()->GetRawAxis(1));
 	Robot::shooter->SpinUpTheWheels();
 }
 
