@@ -45,6 +45,9 @@ bool FireBoulder::IsFinished() {
 // Called once after isFinished returns true
 void FireBoulder::End() {
 	fired = false;
+	Robot::shooter->Lower();
+	Wait(2);
+	Robot::shooter->Stop();
 }
 
 // Called when another command which requires one or more of the same
