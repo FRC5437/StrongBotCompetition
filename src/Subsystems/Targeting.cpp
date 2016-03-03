@@ -16,7 +16,7 @@
 
 std::shared_ptr<NetworkTable> grip;
 
-const double FOCAL_LENGTH = 595;	//pixels; not calculated, but estimated
+const double FOCAL_LENGTH = 583.515625;	//pixels; not calculated, but estimated
 const double TARGET_WIDTH = 20.0;	//inches
 
 const double FOCAL_TARGET_WIDTH = FOCAL_LENGTH * TARGET_WIDTH; //pixel-inches; should be 14961.50
@@ -45,15 +45,41 @@ void Targeting::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-double Targeting::GetTarget() {
+double* Targeting::GetTarget() {
+	static double results[4];
+	auto areas = grip->GetNumberArray("myContoursReport/area", llvm::ArrayRef<double>()),
+		 centerX = grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>()),
+		 centerY = grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>()),
+		 width = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
+		 height = grip->GetNumberArray("myContoursReport/height", llvm::ArrayRef<double>());
+
+	double targetWidth = -1.0;
+	int index = -1;
+	for (uint i = 0; i < areas.size(); i++) {
+		if (areas[i] > targetWidth) {
+			targetWidth = areas[i];
+			index = i;
+		}
+	}
+
+	if (targetWidth >= 0.0) {
+		results[0] = centerX[index];
+		results[1] = centerY[index];
+		results[2] = width[index];
+		results[3] = height[index];
+	}
+	return results;
+}
+
+double Targeting::GetHeight() {
 	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
-			centerX = grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>());
+			centerY = grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>());
 
 	double targetWidth = -1.0, temp = 0.0;
 	for (uint i = 0; i < widths.size(); i++) {
 		if (widths[i] > targetWidth) {
 			targetWidth = widths[i];
-			temp = centerX[i];
+			temp = centerY[i];
 		}
 	}
 
@@ -64,15 +90,49 @@ double Targeting::GetTarget() {
 }
 
 double Targeting::GetDistance() {
-	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>());
+	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>()),
+			targetHeights = grip->GetNumberArray("myContoursReport/height", llvm::ArrayRef<double>());
 
 	double widthPixels = -1.0;
+	double heightPixels = 0.0;
 	for (uint i = 0; i < widths.size(); i++) {
 		if (widths[i] > widthPixels) {
 			widthPixels = widths[i];
+			heightPixels = targetHeights[i];
 		}
 	}
 
-	return (FOCAL_TARGET_WIDTH / widthPixels); // distance calculation
+	//double distHypotenuse = ((FOCAL_LENGTH * AdjustTargetWidthForSkew(widthPixels, heightPixels)) / widthPixels); // distance calculation
+	double distGround =  144; //sqrt((pow(distHypotenuse, 2.0)) - pow(92.75, 2.0)); //92.75 is the approximate distance in inches from the camera's height to the target's height
+	SmartDashboard::PutNumber("Distance from target", distGround);
+	return distGround;
+}
+
+double Targeting::AdjustTargetWidthForSkew( double width, double height) {
+	double trueTargetWidth = 20.0;
+	double idealTargetWidthHeightRatio = 0.547;
+	double currentTargetWidthHeightRatio = width / height;
+	double adjustedTargetWidth = 20.0;
+
+	if (currentTargetWidthHeightRatio > 0.60){
+		adjustedTargetWidth = 20.0;
+	}
+	else if (currentTargetWidthHeightRatio > 0.65) {
+		adjustedTargetWidth = 19.5;
+	}
+	else if (currentTargetWidthHeightRatio > 0.70) {
+		adjustedTargetWidth = 19.0;
+	}
+	else if (currentTargetWidthHeightRatio > 0.75) {
+		adjustedTargetWidth = 18.5;
+		}
+	else if (currentTargetWidthHeightRatio > 0.80) {
+		adjustedTargetWidth = 18.0;
+		}
+	else if (currentTargetWidthHeightRatio > 0.85) {
+		adjustedTargetWidth = 17.5;
+		}
+
+	return adjustedTargetWidth;
 }
 

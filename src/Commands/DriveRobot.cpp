@@ -31,6 +31,11 @@ void DriveRobot::Initialize() {
 void DriveRobot::Execute() {
 	Robot::chassis->Drive(Robot::oi->getjoy1(), Robot::oi->getjoy2());
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
+	SmartDashboard::PutNumber("Pitch", Robot::navX->ahrs->GetPitch());
+	SmartDashboard::PutNumber("Roll", Robot::navX->ahrs->GetRoll());
+	SmartDashboard::PutNumber("X", Robot::navX->ahrs->GetRawGyroX());
+	SmartDashboard::PutNumber("Y", Robot::navX->ahrs->GetRawGyroY());
+	SmartDashboard::PutNumber("Z", Robot::navX->ahrs->GetRawGyroZ());
 	SmartDashboard::PutNumber("POV", Robot::oi->getjoy1()->GetPOV());
 }
 

@@ -31,8 +31,18 @@ RotateDegrees::RotateDegrees(int targetDegrees): Command() {
 
 // Called just before this Command runs the first time
 void RotateDegrees::Initialize() {
-	Robot::chassis->Enable();
-	Robot::chassis->SetSetpoint(degrees);
+	//Robot::chassis->Enable();
+	//Robot::chassis->SetSetpoint(degrees);
+	if (degrees > 0) {
+		Robot::chassis->Drive(0.5, -0.5);
+		Wait(1);
+		rightDir = true;
+	}
+	if (degrees < 0) {
+		Robot::chassis->Drive(-0.5, 0.5);
+		Wait(1);
+		rightDir = true;
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -42,12 +52,13 @@ void RotateDegrees::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RotateDegrees::IsFinished() {
-    return Robot::chassis->OnTarget();
+    return rightDir;
 }
 
 // Called once after isFinished returns true
 void RotateDegrees::End() {
-Robot::chassis->Disable();
+rightDir = false;
+Robot::chassis->Drive(0.0,0.0);
 }
 
 // Called when another command which requires one or more of the same
