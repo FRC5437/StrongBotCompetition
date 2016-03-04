@@ -44,6 +44,7 @@ void Target::Initialize() {
 	//Robot::shooter->Angle(600);
 	Wait(1.5);
 	currentYaw = Robot::navX->ahrs->GetYaw();
+<<<<<<< HEAD
 
 	targetResults = Robot::targeting->GetTarget();
 	double targetX = targetResults[0];
@@ -68,6 +69,11 @@ void Target::Initialize() {
 	SmartDashboard::PutNumber("CHHmoveWidthInches", moveWidthInches);
 	SmartDashboard::PutNumber("CHHknownWidthInches", knownWidthInches);
 
+=======
+	targetX = Robot::targeting->GetTarget();
+	centerDistance = targetX - 320.0;
+	degreesToRotate = atan(centerDistance/595) * 180 / PI; //595 = focal length
+>>>>>>> origin/master
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 

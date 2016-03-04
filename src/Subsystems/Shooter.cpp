@@ -97,6 +97,7 @@ void Shooter::Angle(double setpoint) {
 
 
 
+
 	//cANTalon3->Set(joystick);
 }
 
