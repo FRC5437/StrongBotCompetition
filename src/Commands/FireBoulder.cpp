@@ -26,7 +26,7 @@ FireBoulder::FireBoulder(): Command() {
 void FireBoulder::Initialize() {
 	fired = false;
 	Robot::shooter->SpinUpTheWheels();
-	Wait(0.5);
+	//Wait(0.5);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -48,9 +48,9 @@ bool FireBoulder::IsFinished() {
 
 // Called once after isFinished returns true
 void FireBoulder::End() {
-	Robot::shooter->Lower();
-	Wait(2);
-	Robot::shooter->Stop();
+	//Robot::shooter->Lower();
+	//Wait(2);
+	//Robot::shooter->Stop();
 	fired = false;
 }
 

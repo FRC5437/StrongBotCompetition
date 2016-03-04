@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<JoystickButton> b3_4;
 	std::shared_ptr<JoystickButton> b1_3;
 	std::shared_ptr<JoystickButton> b2_3;
+	std::shared_ptr<JoystickButton>	b3_5;
 
 public:
 	OI();
