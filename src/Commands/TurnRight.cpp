@@ -1,12 +1,12 @@
 #include "TurnRight.h"
 #include "../Subsystems/Chassis.h"
 
-TurnRight::TurnRight()
+TurnRight::TurnRight(double time)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 	Requires(Robot::chassis.get());
-	SetTimeout(1.3);
+	SetTimeout(time);
 }
 
 // Called just before this Command runs the first time

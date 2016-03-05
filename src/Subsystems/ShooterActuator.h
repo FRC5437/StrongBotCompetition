@@ -12,7 +12,7 @@ public:
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
-	void Aim(int);
+	void Aim(double setpoint);
 	std::shared_ptr<CANTalon> Actuator;
 
 };

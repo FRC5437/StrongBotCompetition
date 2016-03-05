@@ -42,7 +42,6 @@ Target::Target(): Command() {
 // Called just before this Command runs the first time
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
-	Wait(1.5);
 	currentYaw = Robot::navX->ahrs->GetYaw();
 
 	targetResults = Robot::targeting->GetTarget();
@@ -51,7 +50,7 @@ void Target::Initialize() {
 	double targetWidth = targetResults[2];
 	double targetHeight = targetResults[3];
 
-	centerDistance = targetX - 285.0;
+	centerDistance = targetX - 280.0;
 	double knownWidthInches = Robot::targeting->AdjustTargetWidthForSkew(targetWidth, targetHeight);
 	double distanceToTargetInches = 144; //(FOCAL_LENGTH * knownWidthInches)/ targetWidth;
 	double moveWidthInches = (distanceToTargetInches * centerDistance)/FOCAL_LENGTH;

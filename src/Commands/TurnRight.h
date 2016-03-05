@@ -7,7 +7,7 @@
 class TurnRight: public Command
 {
 public:
-	TurnRight();
+	TurnRight(double time);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

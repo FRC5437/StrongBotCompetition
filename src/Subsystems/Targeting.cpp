@@ -136,3 +136,10 @@ double Targeting::AdjustTargetWidthForSkew( double width, double height) {
 	return adjustedTargetWidth;
 }
 
+double Targeting::TargetX() {
+	return GetTarget()[0];
+}
+
+double Targeting::TargetY() {
+	return GetTarget()[1];
+}

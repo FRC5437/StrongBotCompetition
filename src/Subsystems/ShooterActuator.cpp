@@ -36,11 +36,13 @@ void ShooterActuator::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());
+
 }
 
-void ShooterActuator::Aim(int setpoint) {
-	SetSetpoint(setpoint);
-	Enable();
+void ShooterActuator::Aim(double setpoint) {
+	//SetSetpoint(setpoint);
+	//Enable();
+	Actuator->Set(setpoint);
 }
 
 

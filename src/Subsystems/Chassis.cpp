@@ -15,7 +15,7 @@ Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
 	robotDrive21 = RobotMap::chassisRobotDrive21;
 	SetInputRange(-180.0, 180.0);
 	SetOutputRange(-1.0, 1.0);
-	SetAbsoluteTolerance(0.5);
+	SetPercentTolerance(0.5);
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
 	//                  to
