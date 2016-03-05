@@ -26,17 +26,18 @@ FireBoulder::FireBoulder(): Command() {
 void FireBoulder::Initialize() {
 	fired = false;
 	Robot::shooter->SpinUpTheWheels();
-	//Wait(0.5);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void FireBoulder::Execute() {
 	SmartDashboard::PutNumber("Left Speed", Robot::shooter->GetLeftSpeed());
 	SmartDashboard::PutNumber("Right Speed", -Robot::shooter->GetRightSpeed());
-	if ((Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() + 20.0))) {
-		if ((Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() - 20.0))) {
-			Robot::shooter->Fire();
-			fired = true;
+	if (Robot::shooter->GetLeftSpeed() > 4500.0 && -(Robot::shooter->GetRightSpeed()) > 4500.0) {
+		if ((Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() + 50.0))) {
+			if ((Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() - 50.0))) {
+				Robot::shooter->Fire();
+				fired = true;
+			}
 		}
 	}
 }

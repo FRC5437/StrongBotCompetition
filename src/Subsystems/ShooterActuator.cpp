@@ -10,7 +10,7 @@ ShooterActuator::ShooterActuator() :
 	Actuator->SetFeedbackDevice(CANTalon::AnalogPot);
 	SetInputRange(0, 1023);
 	SetOutputRange(-1.0, 1.0);
-	SetAbsoluteTolerance(2);
+	SetPercentTolerance(1.0);
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
 	//                  to

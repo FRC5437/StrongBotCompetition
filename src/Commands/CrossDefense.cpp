@@ -30,7 +30,7 @@ void CrossDefense::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CrossDefense::Execute() {
-	Robot::chassis->Drive(0.6, 0.6);
+	Robot::chassis->Drive(0.7, 0.7);
 }
 
 // Make this return true when this Command no longer needs to run execute()

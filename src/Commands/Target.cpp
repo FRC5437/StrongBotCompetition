@@ -41,7 +41,7 @@ Target::Target(): Command() {
 
 // Called just before this Command runs the first time
 void Target::Initialize() {
-	Robot::shooterActuator->Aim(600);
+	//Robot::shooterActuator->Aim(600);
 	Wait(1.5);
 	currentYaw = Robot::navX->ahrs->GetYaw();
 

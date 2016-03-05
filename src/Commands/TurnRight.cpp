@@ -6,7 +6,7 @@ TurnRight::TurnRight()
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 	Requires(Robot::chassis.get());
-	SetTimeout(1);
+	SetTimeout(1.3);
 }
 
 // Called just before this Command runs the first time
