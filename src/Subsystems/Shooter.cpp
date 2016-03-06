@@ -133,6 +133,3 @@ double Shooter::GetRightSpeed() {
 	return cANTalon2->GetSpeed();
 }
 
-bool Shooter::OnTarget() {
-	//return (cANTalon3->GetPosition() <= cANTalon3->GetSetpoint() + 2.0) && (cANTalon3->GetPosition() >= cANTalon3->GetSetpoint() - 2.0);
-}

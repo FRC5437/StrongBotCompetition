@@ -62,8 +62,8 @@ void RobotMap::init() {
     lw->AddActuator("Shooter", "CAN Talon 2", shooterCANTalon2);
     
     shooterCANTalon3.reset(new CANTalon(7));
-    shooterCANTalon3->ConfigFwdLimitSwitchNormallyOpen(true);
-    shooterCANTalon3->ConfigRevLimitSwitchNormallyOpen(true);
+    shooterCANTalon3->ConfigFwdLimitSwitchNormallyOpen(false);
+    shooterCANTalon3->ConfigRevLimitSwitchNormallyOpen(false);
     shooterCANTalon3->SetControlMode(CANSpeedController::kPercentVbus);
     lw->AddActuator("Shooter", "CAN Talon 3", shooterCANTalon3);
     

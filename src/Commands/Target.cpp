@@ -41,7 +41,8 @@ Target::Target(): Command() {
 
 // Called just before this Command runs the first time
 void Target::Initialize() {
-	//Robot::shooterActuator->Aim(600);
+	Robot::shooterActuator->Aim(600);
+	Wait(1.0);
 	currentYaw = Robot::navX->ahrs->GetYaw();
 
 	targetResults = Robot::targeting->GetTarget();
@@ -57,15 +58,29 @@ void Target::Initialize() {
 
 	//degreesToRotate = asin(centerDistance/FOCAL_LENGTH) * 180 / PI;
 	degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
-
-	SmartDashboard::PutNumber("CHHdegreesToRotate", degreesToRotate);
-	SmartDashboard::PutNumber("CHHcurrentYaw", currentYaw);
-	SmartDashboard::PutNumber("CHHtargetYaw", currentYaw+degreesToRotate);
-	SmartDashboard::PutNumber("CHHcenterDistancePixels", centerDistance);
-	SmartDashboard::PutNumber("CHHtargetX", targetX);
-	SmartDashboard::PutNumber("CHHDistanceToTargetInches", distanceToTargetInches);
-	SmartDashboard::PutNumber("CHHmoveWidthInches", moveWidthInches);
-	SmartDashboard::PutNumber("CHHknownWidthInches", knownWidthInches);
+	std::string message;
+	auto degrees = std::to_string(degreesToRotate);
+	auto yaw = std::to_string(currentYaw);
+	auto targetDegrees = std::to_string(currentYaw+degreesToRotate);
+	auto targetPixelDifference = std::to_string(centerDistance);
+	auto targetx = std::to_string(targetX);
+	auto distance = std::to_string(distanceToTargetInches);
+	auto rotationDistance = std::to_string(moveWidthInches);
+	auto targetWidthInches = std::to_string(knownWidthInches);
+	auto targety = std::to_string(targetY);
+	auto width = std::to_string(targetWidth);
+	auto height = std::to_string(targetHeight);
+	Robot::logger->log("Degrees to rotate: " + degrees);
+	Robot::logger->log(" Current Yaw: " + yaw);
+	Robot::logger->log(" Target degrees: " + targetDegrees);
+	Robot::logger->log(" Pixels to rotate: " + targetPixelDifference);
+	Robot::logger->log(" Center X of target: " + targetx);
+	Robot::logger->log(" Distance from target: " + distance);
+	Robot::logger->log(" Inches to rotate: " + rotationDistance);
+	Robot::logger->log(" Perspective width of target: " + targetWidthInches);
+	Robot::logger->log(" Center Y of target: " + targety);
+	Robot::logger->log(" Pixel width of target: " + width);
+	Robot::logger->log(" Pixel height of target: " + height);
 
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);

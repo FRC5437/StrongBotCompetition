@@ -33,7 +33,7 @@ void PrepShooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void PrepShooter::Execute() {
 	//Robot::shooter->Angle((Robot::targeting->GetHeight() * (5.0/3.0) + 160));
-	Robot::shooterActuator->Aim(Robot::oi->getjoy3()->GetY());
+	Robot::shooterActuator->Aim(70.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()

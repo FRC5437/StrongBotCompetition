@@ -36,6 +36,10 @@ void FireBoulder::Execute() {
 		if ((Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() + 50.0))) {
 			if ((Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() - 50.0))) {
 				Robot::shooter->Fire();
+				auto left_rpm = std::to_string(Robot::shooter->GetLeftSpeed());
+				auto right_rpm = std::to_string(Robot::shooter->GetRightSpeed());
+				std::string message = "Left RPM: " + left_rpm + "   Right RPM: " + right_rpm;
+				Robot::logger->log(message);
 				fired = true;
 			}
 		}
