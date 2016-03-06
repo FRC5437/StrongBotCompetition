@@ -16,12 +16,15 @@ void ShooterAngleAutonomous::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ShooterAngleAutonomous::Execute()
 {
-	SmartDashboard::PutNumber("Shooter Position", Robot::shooterActuator->Actuator->GetPosition());
+	double position = Robot::shooterActuator->Actuator->GetPosition();
+	Robot::logger->log("ShooterAngleAutonomous Execute Actuator Position: " + std::to_string(position));
+	SmartDashboard::PutNumber("Shooter Position", position);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ShooterAngleAutonomous::IsFinished()
 {
+
 	return Robot::shooterActuator->OnTarget();
 }
 

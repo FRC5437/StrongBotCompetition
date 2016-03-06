@@ -14,7 +14,6 @@ public:
 	void InitDefaultCommand();
 	void Aim(double setpoint);
 	std::shared_ptr<CANTalon> Actuator;
-
 };
 
 #endif

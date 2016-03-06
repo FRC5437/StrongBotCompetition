@@ -19,14 +19,17 @@ ShooterActuator::ShooterActuator() :
 
 double ShooterActuator::ReturnPIDInput()
 {
+	double position = Actuator->GetPosition();
+	Robot::logger->log("ShooterActuator ReturnPIDInput GetPosition " + std::to_string(position));
 	// Return your input value for the PID loop
 	// e.g. a sensor, like a potentiometer:
 	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
-	return Actuator->GetPosition();
+	return position;
 }
 
 void ShooterActuator::UsePIDOutput(double output)
 {
+	Robot::logger->log("ShooterActuator UsePIDOutput = " + std::to_string(output));
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
 	Actuator->Set(output);
@@ -40,6 +43,7 @@ void ShooterActuator::InitDefaultCommand()
 }
 
 void ShooterActuator::Aim(double setpoint) {
+	Robot::logger->log("ShooterActuator Aim with setpoint = " + std::to_string(setpoint));
 	SetSetpoint(setpoint);
 	Enable();
 	//Actuator->Set(setpoint);
