@@ -4,11 +4,11 @@
 #include "LiveWindow/LiveWindow.h"
 
 ShooterActuator::ShooterActuator() :
-		PIDSubsystem("ShooterActuator", 0.005, 0.0, 0.0)
+		PIDSubsystem("ShooterActuator", 0.006, 0.0, 0.0)
 {
 	Actuator = RobotMap::shooterCANTalon3;
 	Actuator->SetFeedbackDevice(CANTalon::AnalogPot);
-	SetInputRange(0, 1023);
+	SetInputRange(0.0, 1023.0);
 	SetOutputRange(-0.58, 0.58);
 	SetAbsoluteTolerance(10.0);
 	// Use these to get going:

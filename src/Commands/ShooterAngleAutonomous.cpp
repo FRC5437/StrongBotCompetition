@@ -10,7 +10,7 @@ ShooterAngleAutonomous::ShooterAngleAutonomous()
 // Called just before this Command runs the first time
 void ShooterAngleAutonomous::Initialize()
 {
-	Robot::shooterActuator->Aim(880);
+	Robot::shooterActuator->Aim(880.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
