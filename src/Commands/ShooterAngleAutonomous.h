@@ -6,8 +6,10 @@
 
 class ShooterAngleAutonomous: public Command
 {
+private:
+	double potSetting;
 public:
-	ShooterAngleAutonomous();
+	ShooterAngleAutonomous(double setpoint);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

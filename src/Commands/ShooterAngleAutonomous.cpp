@@ -1,16 +1,18 @@
 #include "ShooterAngleAutonomous.h"
 
-ShooterAngleAutonomous::ShooterAngleAutonomous()
+ShooterAngleAutonomous::ShooterAngleAutonomous(double setpoint)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 	Requires(Robot::shooterActuator.get());
+	SetTimeout(2.0);
+	potSetting = setpoint;
 }
 
 // Called just before this Command runs the first time
 void ShooterAngleAutonomous::Initialize()
 {
-	Robot::shooterActuator->Aim(880.0);
+	Robot::shooterActuator->Aim(potSetting);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -25,13 +27,13 @@ void ShooterAngleAutonomous::Execute()
 bool ShooterAngleAutonomous::IsFinished()
 {
 
-	return Robot::shooterActuator->OnTarget();
+	return abs(Robot::shooterActuator->Actuator->GetClosedLoopError()) <= 5.0 || IsTimedOut();
 }
 
 // Called once after isFinished returns true
 void ShooterAngleAutonomous::End()
 {
-	Robot::shooterActuator->Disable();
+
 }
 
 // Called when another command which requires one or more of the same

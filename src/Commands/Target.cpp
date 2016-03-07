@@ -91,7 +91,7 @@ bool Target::IsFinished() {
 void Target::End() {
 	rightDirection = true;
 	Robot::chassis->Disable();
-	Wait(0.35);
+	//Wait(0.35);
 }
 
 // Called when another command which requires one or more of the same
