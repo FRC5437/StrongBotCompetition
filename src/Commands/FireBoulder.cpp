@@ -24,6 +24,7 @@ FireBoulder::FireBoulder(): Command() {
 
 // Called just before this Command runs the first time
 void FireBoulder::Initialize() {
+	Wait(0.3);
 	fired = false;
 	Robot::shooter->SpinUpTheWheels();
 }
