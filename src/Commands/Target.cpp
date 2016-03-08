@@ -43,6 +43,12 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	Robot::shooterActuator->Aim(600);
 	Wait(1.0);
+	if (Robot::targeting->HasTarget() == false) {
+		Robot::chassis->Drive(0.7, -0.7);
+		Wait(0.2);
+		Robot::chassis->Drive(0.0, 0.0);
+		Wait(0.2);
+	}
 	currentYaw = Robot::navX->ahrs->GetYaw();
 
 	targetResults = Robot::targeting->GetTarget();

@@ -143,3 +143,12 @@ double Targeting::TargetX() {
 double Targeting::TargetY() {
 	return GetTarget()[1];
 }
+
+bool Targeting::HasTarget() {
+	auto widths = grip->GetNumberArray("myContoursReport/width", llvm::ArrayRef<double>());
+	if (widths.size() == 0) {
+		return false;
+	} else {
+		return true;
+	}
+}

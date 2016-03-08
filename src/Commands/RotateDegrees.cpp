@@ -11,7 +11,6 @@
 
 #include "RotateDegrees.h"
 
-int degrees;
 int initDegrees;
 int turnDegrees;
 bool rightDir;
@@ -31,20 +30,9 @@ RotateDegrees::RotateDegrees(int targetDegrees): Command() {
 
 // Called just before this Command runs the first time
 void RotateDegrees::Initialize() {
-	//Robot::chassis->Enable();
-	//Robot::chassis->SetSetpoint(degrees);
-	if (degrees > 0) {
-		Robot::chassis->Drive(0.5, -0.5);
-		Wait(1);
-		rightDir = true;
-	}
-	if (degrees < 0) {
-		Robot::chassis->Drive(-0.5, 0.5);
-		Wait(1);
-		rightDir = true;
-	}
+	Robot::chassis->Enable();
+	Robot::chassis->SetSetpoint(degrees);
 }
-
 // Called repeatedly when this Command is scheduled to run
 void RotateDegrees::Execute() {
 
