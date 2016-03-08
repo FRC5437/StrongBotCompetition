@@ -19,7 +19,6 @@ void ShooterAngleAutonomous::Initialize()
 void ShooterAngleAutonomous::Execute()
 {
 	double position = Robot::shooterActuator->Actuator->GetPosition();
-	Robot::logger->log("ShooterAngleAutonomous Execute Actuator Position: " + std::to_string(position));
 	SmartDashboard::PutNumber("Shooter Position", position);
 }
 
@@ -33,6 +32,7 @@ bool ShooterAngleAutonomous::IsFinished()
 // Called once after isFinished returns true
 void ShooterAngleAutonomous::End()
 {
+	Robot::logger->log("ShooterAngleAutonomous Execute Actuator Position: " + std::to_string(Robot::shooterActuator->Actuator->GetPosition()));
 
 }
 
