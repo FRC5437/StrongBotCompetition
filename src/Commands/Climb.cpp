@@ -24,7 +24,7 @@ Climb::Climb(): Command() {
 
 // Called just before this Command runs the first time
 void Climb::Initialize() {
-
+	Robot::pullup->Climb();
 }
 
 // Called repeatedly when this Command is scheduled to run

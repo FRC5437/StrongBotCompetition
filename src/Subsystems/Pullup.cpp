@@ -59,9 +59,10 @@ void Pullup::Segment3() {
 }
 
 void Pullup::Climb() {
-	armSolenoid1->Set(false);
 	armSolenoid2->Set(true);
+	Wait(3.0);
 	armSolenoid3->Set(false);
+	armSolenoid1->Set(false);
 	//TODO: add motors for climbing
 }
 

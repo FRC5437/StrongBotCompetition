@@ -22,7 +22,7 @@ private:
 	std::shared_ptr<JoystickButton> b3_2;
 	std::shared_ptr<JoystickButton> b3_1;
 	std::shared_ptr<Joystick> joy2;
-	std::shared_ptr<JoystickButton> b2_2;
+	std::shared_ptr<JoystickButton> b2_4;
 	std::shared_ptr<JoystickButton> b2_1;
 	std::shared_ptr<Joystick> joy1;
 	std::shared_ptr<JoystickButton> b1_1;
@@ -31,6 +31,8 @@ private:
 	std::shared_ptr<JoystickButton> b1_3;
 	std::shared_ptr<JoystickButton> b2_3;
 	std::shared_ptr<JoystickButton>	b3_5;
+	std::shared_ptr<JoystickButton>	b2_7;
+	std::shared_ptr<JoystickButton>	b2_8;
 
 public:
 	OI();
