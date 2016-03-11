@@ -25,12 +25,12 @@ CrossDefense::CrossDefense(double time): Command() {
 
 // Called just before this Command runs the first time
 void CrossDefense::Initialize() {
-
+	Wait(1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CrossDefense::Execute() {
-	Robot::chassis->Drive(0.7, 0.7);
+	Robot::chassis->Drive(1.0, 1.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()

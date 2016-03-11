@@ -9,9 +9,9 @@ ShooterActuator::ShooterActuator() :
 {
 	Actuator = RobotMap::shooterCANTalon3;
 	Actuator->SetFeedbackDevice(CANTalon::AnalogPot);
-	Actuator->ConfigMaxOutputVoltage(7.0);
+	Actuator->SetAllowableClosedLoopErr(10.0);
 	SetInputRange(0.0, 1023.0);
-	SetOutputRange(-0.58, 0.58);
+	SetOutputRange(-1.0, 1.0);
 	SetAbsoluteTolerance(10.0);
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
