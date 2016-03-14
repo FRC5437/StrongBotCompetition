@@ -57,7 +57,8 @@ void Target::Initialize() {
 	double targetWidth = targetResults[2];
 	double targetHeight = targetResults[3];
 
-	centerDistance = targetX - 280.0;
+	// Crockett - adjust centerDistance to the right a little - -260 instead of -280
+	centerDistance = targetX - 250.0;
 	double knownWidthInches = Robot::targeting->AdjustTargetWidthForSkew(targetWidth, targetHeight);
 	double distanceToTargetInches = 144; //(FOCAL_LENGTH * knownWidthInches)/ targetWidth;
 	double moveWidthInches = (distanceToTargetInches * centerDistance)/FOCAL_LENGTH;

@@ -18,7 +18,7 @@ void TurnRight::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute()
 {
-	Robot::chassis->Drive(0.5, -0.5);
+	Robot::chassis->Drive(0.57, -0.57);
 }
 
 // Make this return true when this Command no longer needs to run execute()

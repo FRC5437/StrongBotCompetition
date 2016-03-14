@@ -1,0 +1,107 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Right Velocity" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="1036"/>
+	</widget>
+	<widget field="Left Velocity" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="1009"/>
+	</widget>
+	<widget field="Fired" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="401"/>
+	</widget>
+	<widget field="Right Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="374"/>
+	</widget>
+	<widget field="Left Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="347"/>
+	</widget>
+	<widget field="Shooter Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="982"/>
+	</widget>
+	<widget field="POV" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="955"/>
+	</widget>
+	<widget field="Z" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="928"/>
+	</widget>
+	<widget field="Y" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="901"/>
+	</widget>
+	<widget field="X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="874"/>
+	</widget>
+	<widget field="Roll" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="847"/>
+	</widget>
+	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="820"/>
+	</widget>
+	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="793"/>
+	</widget>
+	<widget field="CrossDefense" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="753"/>
+	</widget>
+	<widget field="AutoPos5" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="713"/>
+	</widget>
+	<widget field="DriveRobot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="673"/>
+	</widget>
+	<widget field="AutoPos1" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="633"/>
+	</widget>
+	<widget field="PrepShooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="593"/>
+	</widget>
+	<widget field="AutoPos2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="553"/>
+	</widget>
+	<widget field="Center On Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="513"/>
+	</widget>
+	<widget field="Reset Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="473"/>
+	</widget>
+	<widget field="Climb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="433"/>
+	</widget>
+	<widget field="AutoPos3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="307"/>
+	</widget>
+	<widget field="PrepToClimb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="21" y="267"/>
+	</widget>
+	<widget field="Auto Modes" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="420" y="81"/>
+	</widget>
+	<widget field="RotateDegrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="227"/>
+	</widget>
+	<widget field="LoadBoulder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="187"/>
+	</widget>
+	<widget field="Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="147"/>
+	</widget>
+	<widget field="Degrees to rotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="120"/>
+	</widget>
+	<widget field="AutoPos4" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="80"/>
+	</widget>
+	<widget field="FireBoulder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="40"/>
+	</widget>
+	<widget field="Drive To Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="0"/>
+	</widget>
+	<static-widget class="edu.wpi.grip.smartdashboard.GRIPExtension">
+		<location x="667" y="11"/>
+		<width>1473</width>
+		<height>1344</height>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
