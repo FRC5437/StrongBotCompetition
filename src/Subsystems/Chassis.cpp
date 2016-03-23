@@ -13,6 +13,7 @@ Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
 	cANTalon1 = RobotMap::chassisCANTalon1;
 	cANTalon2 = RobotMap::chassisCANTalon2;
 	robotDrive21 = RobotMap::chassisRobotDrive21;
+	climberShift.reset(new Solenoid(5));
 	SetInputRange(-180.0, 180.0);
 	SetOutputRange(-1.0, 1.0);
 	SetAbsoluteTolerance(0.8);
@@ -50,4 +51,12 @@ void Chassis::Drive(double left, double right) {
 
 void Chassis::Drive(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2) {
 	Drive(-joy1->GetRawAxis(1), -joy2->GetRawAxis(1));
+}
+
+void Chassis::Engage() {
+	climberShift->Set(true);
+}
+
+void Chassis::Disengage() { //Default position. Also engages the climber, but to have a Climber::Engage(), I'd have to
+	climberShift->Set(false); //duplicate things, and that's not good.
 }

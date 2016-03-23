@@ -10,6 +10,7 @@ private:
 	std::shared_ptr<CANTalon> cANTalon1;
 	std::shared_ptr<CANTalon> cANTalon2;
 	std::shared_ptr<RobotDrive> robotDrive21;
+	std::shared_ptr<Solenoid> climberShift;
 public:
 	Chassis();
 	double ReturnPIDInput();
@@ -17,6 +18,8 @@ public:
 	void InitDefaultCommand();
 	void Drive(double left, double right);
 	void Drive(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2);
+	void Engage();
+	void Disengage();
 };
 
 #endif
