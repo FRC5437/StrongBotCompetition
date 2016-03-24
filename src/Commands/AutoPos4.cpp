@@ -43,9 +43,9 @@ AutoPos4::AutoPos4() {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-	AddSequential(new LowerClimber());
 	AddParallel(new PrepShooter());
 	AddParallel(new EngageChassis());
+	AddSequential(new LowerClimber());
 
 
 
