@@ -31,7 +31,7 @@ void Climb::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Climb::Execute() {
-Robot::chassis->Drive(0.1, 0.1);
+Robot::chassis->Drive(Robot::oi->getjoy3()->GetY(), Robot::oi->getjoy3()->GetY());
 }
 
 // Make this return true when this Command no longer needs to run execute()

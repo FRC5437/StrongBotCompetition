@@ -64,7 +64,7 @@ AutoPos1::AutoPos1() {
 	AddSequential(new CenterOnTarget());
 
 	Robot::logger->log("Executing AutoPos1 ShooterAngleAutonomous");
-	AddSequential(new ShooterAngleAutonomous(870));
+	AddSequential(new ShooterAngleAutonomous(860));
 
 	Robot::logger->log("Executing AutoPos1 FireBoulder");
 	AddSequential(new FireBoulder());
