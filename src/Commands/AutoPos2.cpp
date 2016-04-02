@@ -52,7 +52,7 @@ AutoPos2::AutoPos2() {
 	AddSequential(new LowerClimber());
 
 
-	AddSequential(new CrossDefense(6.0));
+	AddSequential(new CrossDefense(4.0));
 	AddSequential(new TurnRight(0.8));
 	AddSequential(new CenterOnTarget());
 	AddSequential(new ShooterAngleAutonomous(880));

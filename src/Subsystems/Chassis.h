@@ -18,6 +18,7 @@ public:
 	void InitDefaultCommand();
 	void Drive(double left, double right);
 	void Drive(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2);
+	void DriveHigh(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2);
 	void Engage();
 	void Disengage();
 };

@@ -31,6 +31,7 @@ void LoadBoulder::Initialize() {
 void LoadBoulder::Execute() {
 	Robot::shooter->Loadpos();
 	Robot::shooter->Load();
+	Robot::shooter->Feed();
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -29,7 +29,11 @@ void DriveRobot::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveRobot::Execute() {
-	Robot::chassis->Drive(Robot::oi->getjoy1(), Robot::oi->getjoy2());
+	if (Robot::oi->getjoy1()->GetRawButton(1) && Robot::oi->getjoy2()->GetRawButton(1)) {
+		Robot::chassis->DriveHigh(Robot::oi->getjoy1(), Robot::oi->getjoy2());
+	} else {
+		Robot::chassis->Drive(Robot::oi->getjoy1(), Robot::oi->getjoy2());
+	}
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
 	SmartDashboard::PutNumber("Pitch", Robot::navX->ahrs->GetPitch());
 	SmartDashboard::PutNumber("Roll", Robot::navX->ahrs->GetRoll());
