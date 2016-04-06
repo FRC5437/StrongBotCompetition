@@ -1,13 +1,13 @@
-#ifndef TurnLeft_H
-#define TurnLeft_H
+#ifndef WaitDuration_H
+#define WaitDuration_H
 
 #include "../Robot.h"
 #include "Commands/Subsystem.h"
 
-class TurnLeft: public Command
+class WaitDuration: public Command
 {
 public:
-	TurnLeft(double time);
+	WaitDuration(double time);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
