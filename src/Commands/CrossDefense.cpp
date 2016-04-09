@@ -25,7 +25,6 @@ CrossDefense::CrossDefense(double time): Command() {
 
 // Called just before this Command runs the first time
 void CrossDefense::Initialize() {
-	Wait(1.5);
 }
 
 // Called repeatedly when this Command is scheduled to run
