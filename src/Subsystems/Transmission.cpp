@@ -15,13 +15,9 @@ Transmission::Transmission() :
 
 void Transmission::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
 	SetDefaultCommand(new TransmissionToggle());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
 void Transmission::HighGear() {
 	transmissionSolenoid->Set(On);
 }

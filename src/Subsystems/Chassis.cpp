@@ -17,31 +17,20 @@ Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
 	SetInputRange(-180.0, 180.0);
 	SetOutputRange(-1.0, 1.0);
 	SetAbsoluteTolerance(0.8);
-	// Use these to get going:
-	// SetSetpoint() -  Sets where the PID controller should move the system
-	//                  to
-	// Enable() - Enables the PID controller.
 }
 
 double Chassis::ReturnPIDInput()
 {
-	// Return your input value for the PID loop
-	// e.g. a sensor, like a potentiometer:
-	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
 	return Robot::navX->ahrs->GetYaw();
 }
 
 void Chassis::UsePIDOutput(double output)
 {
-	// Use output to drive your system, like a motor
-	// e.g. yourMotor->Set(output);
 	Drive(output, -output);
 }
 
 void Chassis::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//setDefaultCommand(new MySpecialCommand());
 	SetDefaultCommand(new DriveRobot());
 }
 

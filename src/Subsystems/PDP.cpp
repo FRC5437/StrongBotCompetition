@@ -10,10 +10,5 @@ PDP::PDP() :
 
 void PDP::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
 	SetDefaultCommand(new PDPReadTotalCurrent());
 }
-
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
