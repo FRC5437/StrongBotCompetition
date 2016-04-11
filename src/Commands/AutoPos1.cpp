@@ -58,19 +58,10 @@ AutoPos1::AutoPos1() {
 	AddSequential(new LowerClimber());
 	AddSequential(new WaitDuration(1.5));
 
-	Robot::logger->log("Executing AutoPos1 CrossDefense duration seconds of : " + std::to_string(duration_seconds));
 	AddSequential(new CrossDefense(duration_seconds));
-
-	Robot::logger->log("Executing AutoPos1 TurnRight duration seconds of : " + std::to_string(rotation_seconds));
 	AddSequential(new TurnRight(rotation_seconds));
-
-	Robot::logger->log("Executing AutoPos1 CenterOnTarget");
 	AddSequential(new CenterOnTarget());
-
-	Robot::logger->log("Executing AutoPos1 ShooterAngleAutonomous");
 	AddSequential(new ShooterAngleAutonomous(860));
-
-	Robot::logger->log("Executing AutoPos1 FireBoulder");
 	AddSequential(new FireBoulder());
 
 	AddSequential(new PrepShooter());

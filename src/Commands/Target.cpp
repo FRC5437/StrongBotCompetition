@@ -67,17 +67,18 @@ void Target::Initialize() {
 	degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
 
 	Robot::logger->log(
-		"Degrees to rotate: " + std::to_string(degreesToRotate)
-		+ " Current Yaw: " + std::to_string(currentYaw)
-		+ " Final degrees: " + std::to_string(currentYaw+degreesToRotate)
-		+ " Pixels off target: " + std::to_string(centerDistance)
-		+ " Center X: " + std::to_string(targetX)
-		+ " Distance from target: " + std::to_string(distanceToTargetInches)
-		+ " Inches to rotate: " + std::to_string(moveWidthInches)
-		+ " Perspective width of target: " + std::to_string(knownWidthInches)
-		+ " Center Y of target: " + std::to_string(targetY)
-		+ " Pixel width of target: " + std::to_string(targetWidth)
-		+ " Pixel height of target: " + std::to_string(targetHeight)
+			//Degrees to Rotate, Current Yaw, Final Degrees, Pixels off target, Center X, Distance From Target, Inches to Rotate, Perspective Width of Target, Center Y, Pixel Width, Pixel Height
+		"" + std::to_string(degreesToRotate)
+		+ "," + std::to_string(currentYaw)
+		+ "," + std::to_string(currentYaw+degreesToRotate)
+		+ "," + std::to_string(centerDistance)
+		+ "," + std::to_string(targetX)
+		+ "," + std::to_string(distanceToTargetInches)
+		+ "," + std::to_string(moveWidthInches)
+		+ "," + std::to_string(knownWidthInches)
+		+ "," + std::to_string(targetY)
+		+ "," + std::to_string(targetWidth)
+		+ "," + std::to_string(targetHeight)
 	);
 
 	Robot::chassis->Enable();

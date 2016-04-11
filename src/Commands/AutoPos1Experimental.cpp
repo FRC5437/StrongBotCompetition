@@ -1,5 +1,17 @@
 #include "AutoPos1Experimental.h"
 
+#include "ResetYaw.h"
+#include "LowerClimber.h"
+#include "PrepShooter.h"
+#include "EngageChassis.h"
+#include "WaitDuration.h"
+#include "RotateDegrees.h"
+#include "CrossDefense.h"
+#include "TurnRight.h"
+#include "CenterOnTarget.h"
+#include "ShooterAngleAutonomous.h"
+#include "FireBoulder.h"
+
 AutoPos1Experimental::AutoPos1Experimental()
 {
 	//This is a variation on the Position 1 autonomous which is meant to cross back under the low bar after shooting.

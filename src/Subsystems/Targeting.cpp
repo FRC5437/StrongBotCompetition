@@ -14,8 +14,6 @@
 #include "Targeting.h"
 #include "../RobotMap.h"
 
-std::shared_ptr<NetworkTable> grip;
-
 const double FOCAL_LENGTH = 583.515625;	//pixels; not calculated, but estimated
 const double TARGET_WIDTH = 20.0;	//inches
 
