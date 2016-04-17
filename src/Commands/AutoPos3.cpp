@@ -26,6 +26,6 @@ AutoPos3::AutoPos3() {
 
 	AddSequential(new CrossDefense(4));
 	AddSequential(new CenterOnTarget());
-	AddSequential(new ShooterAngleAutonomous(860));
+	AddSequential(new ShooterAngleAutonomous(840));
 	AddSequential(new FireBoulder());
 }

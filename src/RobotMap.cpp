@@ -52,7 +52,7 @@ void RobotMap::init() {
     shooterCANTalon3.reset(new CANTalon(7));
     shooterCANTalon3->ConfigFwdLimitSwitchNormallyOpen(false);
     shooterCANTalon3->ConfigRevLimitSwitchNormallyOpen(false);
-    shooterCANTalon3->SetControlMode(CANSpeedController::kPercentVbus);
+    shooterCANTalon3->SetControlMode(CANSpeedController::kPosition);
     lw->AddActuator("Shooter", "CAN Talon 3", shooterCANTalon3);
     
     compressorCompressor1.reset(new Compressor(0));

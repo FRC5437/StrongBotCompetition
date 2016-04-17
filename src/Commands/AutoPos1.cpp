@@ -33,7 +33,7 @@ AutoPos1::AutoPos1() {
 	AddSequential(new CrossDefense(duration_seconds));
 	AddSequential(new TurnRight(rotation_seconds));
 	AddSequential(new CenterOnTarget());
-	AddSequential(new ShooterAngleAutonomous(860));
+	AddSequential(new ShooterAngleAutonomous(840));
 	AddSequential(new FireBoulder());
 
 	AddSequential(new PrepShooter());

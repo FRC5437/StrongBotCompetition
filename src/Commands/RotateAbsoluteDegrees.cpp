@@ -12,9 +12,6 @@ void RotateAbsoluteDegrees::Initialize()
 	degreesPOV = Robot::oi->getjoy1()->GetPOV();
 	if (degreesPOV >= 179) {
 		degreesPOV = ((degreesPOV + 180) % 360) - 180;
-		if (degreesPOV < -140) {
-			degreesPOV = 0;
-		}
 	}
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(degreesPOV);

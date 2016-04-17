@@ -4,7 +4,7 @@ ShooterAngleAutonomous::ShooterAngleAutonomous(double setpoint)
 {
 
 	Requires(Robot::shooterActuator.get());
-	SetTimeout(2.0);
+	SetTimeout(5.0);
 	potSetting = setpoint;
 }
 
@@ -28,6 +28,7 @@ bool ShooterAngleAutonomous::IsFinished()
 void ShooterAngleAutonomous::End()
 {
 	Robot::logger->log("ShooterAngleAutonomous Execute Actuator Position: " + std::to_string(Robot::shooterActuator->Actuator->GetPosition()));
+	//Robot::shooterActuator->Actuator->Disable();
 
 }
 

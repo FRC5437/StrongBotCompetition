@@ -22,10 +22,10 @@ void FireBoulder::Execute() {
 				Robot::shooter->Fire();
 				auto left_rpm = std::to_string(Robot::shooter->GetLeftSpeed());
 				auto right_rpm = std::to_string(Robot::shooter->GetRightSpeed());
-				auto center_x = std::to_string((grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>())[1]));
-				auto center_y = std::to_string((grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>())[1]));
+				//auto center_x = std::to_string((grip->GetNumberArray("myContoursReport/centerX", llvm::ArrayRef<double>())[1]));
+				//auto center_y = std::to_string((grip->GetNumberArray("myContoursReport/centerY", llvm::ArrayRef<double>())[1]));
 				std::string message = "Left RPM: " + left_rpm + "   Right RPM: " + right_rpm;
-				message += (" Center X:" + center_x + " Center Y:" + center_y);
+				//message += (" Center X:" + center_x + " Center Y:" + center_y);
 				Robot::logger->log(message);
 				fired = true;
 			//}
