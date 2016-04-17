@@ -5,7 +5,7 @@
 PDP::PDP() :
 		Subsystem("PDP")
 {
-	pdp.reset(new PowerDistributionPanel());
+	pdp.reset(new PowerDistributionPanel(1));
 }
 
 void PDP::InitDefaultCommand()

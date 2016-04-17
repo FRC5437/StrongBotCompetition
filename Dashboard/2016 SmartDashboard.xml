@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Total Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="1090"/>
+	</widget>
+	<widget field="Has Ball" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="1063"/>
+	</widget>
 	<widget field="Right Velocity" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="1036"/>
 	</widget>

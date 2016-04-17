@@ -30,7 +30,7 @@ void ShooterActuator::InitDefaultCommand()
 
 void ShooterActuator::Aim(double setpoint) {
 	Robot::logger->log("ShooterActuator Aim with setpoint = " + std::to_string(setpoint));
-	Actuator->SetSetpoint(setpoint);
+	Actuator->Set(setpoint);
 	Actuator->Enable();
 }
 

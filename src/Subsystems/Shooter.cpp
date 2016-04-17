@@ -14,12 +14,12 @@ Shooter::Shooter() : Subsystem("Shooter") {
     cANTalon1 = RobotMap::shooterCANTalon1;
     cANTalon1->Disable();
     cANTalon1->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    cANTalon1->SetSensorDirection(true);
+    cANTalon1->SetSensorDirection(false);
     cANTalon1->SetInverted(true);
     cANTalon2 = RobotMap::shooterCANTalon2;
     cANTalon2->Disable();
     cANTalon2->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    cANTalon2->SetSensorDirection(true);
+    cANTalon2->SetSensorDirection(false);
     cANTalon2->SetInverted(false);
     ballSensor = new DigitalInput(0);
     ballFeeder = new Talon(0);
@@ -32,16 +32,16 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::Load() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(4000);
+	cANTalon1->SetSetpoint(3500);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(4000);
+	cANTalon2->SetSetpoint(3500);
 }
 
 void Shooter::SpinUpTheWheels() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(-5000);
+	cANTalon1->SetSetpoint(-4000);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(-5000);
+	cANTalon2->SetSetpoint(-4000);
 }
 
 void Shooter::Fire() {

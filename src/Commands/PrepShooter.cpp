@@ -14,11 +14,11 @@ void PrepShooter::Initialize() {
 }
 
 void PrepShooter::Execute() {
-	Robot::shooterActuator->Aim(98.0);
+	Robot::shooterActuator->Aim(Robot::oi->getjoy3()->GetRawAxis(1));
 }
 
 bool PrepShooter::IsFinished() {
-	return abs(Robot::shooterActuator->Actuator->GetClosedLoopError()) <= 5.0 || IsTimedOut();
+	return false; //abs(Robot::shooterActuator->Actuator->GetClosedLoopError()) <= 5.0 || IsTimedOut();
 }
 
 void PrepShooter::End() {

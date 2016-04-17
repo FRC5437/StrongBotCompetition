@@ -35,15 +35,15 @@ void Chassis::InitDefaultCommand()
 }
 
 void Chassis::Drive(double left, double right) {
-	robotDrive21->TankDrive(left, right);
+	robotDrive21->TankDrive(left, right, false);
 }
 
 void Chassis::Drive(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2) {
-	Drive(-joy1->GetRawAxis(1), -joy2->GetRawAxis(1));
+	Drive((-joy1->GetRawAxis(1) * 0.8), (-joy2->GetRawAxis(1)* 0.8));
 }
 
 void Chassis::DriveHigh(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2) {
-	Drive((-joy1->GetRawAxis(1) * 0.8), (-joy2->GetRawAxis(1) * 0.8));
+	Drive((-joy1->GetRawAxis(1)), (-joy2->GetRawAxis(1)));
 }
 void Chassis::Engage() {
 	climberShift->Set(true);

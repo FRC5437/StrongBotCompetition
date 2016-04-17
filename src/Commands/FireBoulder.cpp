@@ -15,9 +15,10 @@ void FireBoulder::Initialize() {
 void FireBoulder::Execute() {
 	SmartDashboard::PutNumber("Left Speed", Robot::shooter->GetLeftSpeed());
 	SmartDashboard::PutNumber("Right Speed", -Robot::shooter->GetRightSpeed());
-	if (Robot::shooter->GetLeftSpeed() > 4500.0 && -(Robot::shooter->GetRightSpeed()) > 4500.0) {
-		if ((Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() + 50.0))) {
-			if ((Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() - 50.0))) {
+	if (Robot::shooter->GetLeftSpeed() > 3850.0 && -Robot::shooter->GetRightSpeed() > 3850.0) {
+		//if (Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() + 50.0)) {
+	      //if (Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() - 50.0)) {
+		        Wait (0.3);
 				Robot::shooter->Fire();
 				auto left_rpm = std::to_string(Robot::shooter->GetLeftSpeed());
 				auto right_rpm = std::to_string(Robot::shooter->GetRightSpeed());
@@ -27,8 +28,8 @@ void FireBoulder::Execute() {
 				message += (" Center X:" + center_x + " Center Y:" + center_y);
 				Robot::logger->log(message);
 				fired = true;
-			}
-		}
+			//}
+		//}
 	}
 }
 bool FireBoulder::IsFinished() {
