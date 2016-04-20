@@ -21,8 +21,8 @@
 
 AutoPos1::AutoPos1() {
 
-	double duration_seconds = 5.5;
-	double rotation_seconds = 1.0;
+	double duration_seconds = 2.5;
+	double rotation_seconds = 0.6;
 
 	AddParallel(new ResetYaw());
 	AddParallel(new PrepShooter());

@@ -83,7 +83,7 @@ OI::OI() {
     b3_4->WhenPressed(new Target());
 
     b3_5.reset(new JoystickButton(joy3.get(), 5));
-    b3_5->WhenPressed(new ShooterAngleAutonomous(840));
+    b3_5->WhenPressed(new ShooterAngleAutonomous(920));
 
     SmartDashboard::PutData("Reset Yaw", new ResetYaw());
     SmartDashboard::PutData("Center On Target", new CenterOnTarget());

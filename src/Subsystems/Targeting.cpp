@@ -77,32 +77,17 @@ double Targeting::GetDistance() {
 	return distGround;
 }
 
-double Targeting::AdjustTargetWidthForSkew( double width, double height) {
-	double trueTargetWidth = 20.0;
-	double idealTargetWidthHeightRatio = 0.547;
-	double currentTargetWidthHeightRatio = width / height;
-	double adjustedTargetWidth = 20.0;
+double Targeting::AdjustTargetingBasedOnArea( double width, double height) {
+	double area = width * height;
+	double baseline_area = 3500; //TODO determine the real baseline
 
-	if (currentTargetWidthHeightRatio > 0.60){
-		adjustedTargetWidth = 20.0;
-	}
-	else if (currentTargetWidthHeightRatio > 0.65) {
-		adjustedTargetWidth = 19.5;
-	}
-	else if (currentTargetWidthHeightRatio > 0.70) {
-		adjustedTargetWidth = 19.0;
-	}
-	else if (currentTargetWidthHeightRatio > 0.75) {
-		adjustedTargetWidth = 18.5;
-		}
-	else if (currentTargetWidthHeightRatio > 0.80) {
-		adjustedTargetWidth = 18.0;
-		}
-	else if (currentTargetWidthHeightRatio > 0.85) {
-		adjustedTargetWidth = 17.5;
-		}
+	double elevator_adjustment = (area - baseline_area) * 0.02;
 
-	return adjustedTargetWidth;
+	return elevator_adjustment;
+}
+
+bool Targeting::OnTargetX( double centerX ) {
+	return abs(centerX - TargetX()) < 3;
 }
 
 double Targeting::TargetX() {

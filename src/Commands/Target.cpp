@@ -6,7 +6,7 @@
 
 #define FOCAL_LENGTH 589.73
 #define PI 3.14159265
-#define X_RATIO 0.10  //calculated degress per pixel - probably needs refinement - may not be constant
+#define X_RATIO 0.11  //calculated degress per pixel - probably needs refinement - may not be constant
 #define Y_RATIO 0.0830
 
 double* targetResults;
@@ -45,9 +45,6 @@ void Target::Initialize() {
 	double targetHeight = targetResults[3];
 
 	pixelsToMove = targetX - centerX;
-	double distanceToTargetInches = 144; //(FOCAL_LENGTH * knownWidthInches)/ targetWidth;
-	double moveWidthInches = (distanceToTargetInches * pixelsToMove)/FOCAL_LENGTH;
-
 	degreesToRotate = pixelsToMove * X_RATIO;
 	//degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
 
@@ -67,6 +64,10 @@ void Target::Initialize() {
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 	//Robot::shooterActuator->Aim(840);
+	if (OnTarget()){
+		Robot::logger->log("Target believes it is now OnTarget - fire!");
+		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
+	}
 }
 
 void Target::Execute() {
@@ -75,18 +76,17 @@ void Target::Execute() {
 
 bool Target::IsFinished() {
 	bool result = Robot::chassis->OnTarget() || IsTimedOut();
-	if (result){
-
-	}
     return result;
 }
 
-void Target::End() {
+bool Target::OnTarget() {
+	return Robot::targeting->OnTargetX(centerX);
+}
 
+void Target::End() {
 	double finalYaw = Robot::navX->ahrs->GetYaw();
 	Robot::logger->log(	"Final Yaw: " + std::to_string(finalYaw) );
 	double targetX = Robot::targeting->GetTarget()[0];
-	Wait(0.5);
 	Robot::logger->log("Target::IsFinished targetX: " + std::to_string(targetX));
 
 	rightDirection = true;

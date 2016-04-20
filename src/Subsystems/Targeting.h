@@ -15,7 +15,8 @@ public:
 	double* GetTarget();
 	double GetDistance();
 	double GetHeight();
-	double AdjustTargetWidthForSkew(double width, double height);
+	double AdjustTargetingBasedOnArea(double width, double height);
+	bool OnTargetX( double centerX );
 	double TargetX();
 	double TargetY();
 	bool HasTarget();
