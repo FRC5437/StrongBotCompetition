@@ -14,7 +14,7 @@ double targetDistance; //distance between camera and target
 double pixelsToMove; //quite literally the difference between the two detected centers
 double degreesToRotate;
 double currentYaw;
-const double centerX = 265.0;
+const double centerX = 255.0;
 const double tolX = 7.0;
 
 bool rightDirection = true;

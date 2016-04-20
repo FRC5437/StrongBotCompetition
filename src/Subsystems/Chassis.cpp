@@ -5,7 +5,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
 static double kP = 0.04;
-static double kI = 0.015;
+static double kI = 0.02;
 static double kD = 0.08;
 static double kF = 0.0;
 

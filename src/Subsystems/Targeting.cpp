@@ -79,9 +79,9 @@ double Targeting::GetDistance() {
 
 double Targeting::AdjustTargetingBasedOnArea( double width, double height) {
 	double area = width * height;
-	double baseline_area = 3500; //TODO determine the real baseline
+	double baseline_area = 3000; //TODO determine the real baseline
 
-	double elevator_adjustment = (area - baseline_area) * 0.02;
+	double elevator_adjustment = (area - baseline_area) * 0.03;
 
 	return elevator_adjustment;
 }
