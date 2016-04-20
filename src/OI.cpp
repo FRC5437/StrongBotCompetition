@@ -43,6 +43,8 @@ OI::OI() {
     b3_2->WhenPressed(new FireBoulder());
     b3_1.reset(new JoystickButton(joy3.get(), 1));
     b3_1->WhenPressed(new PrepShooter());
+    b3_8.reset(new JoystickButton(joy3.get(), 8));
+    b3_8->WhenPressed(new CenterOnTarget());
     joy2.reset(new Joystick(1));
     
     b2_1.reset(new JoystickButton(joy2.get(), 1));

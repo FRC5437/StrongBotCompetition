@@ -6,7 +6,7 @@
 
 #define FOCAL_LENGTH 589.73
 #define PI 3.14159265
-#define X_RATIO 0.0907
+#define X_RATIO 0.10  //calculated degress per pixel - probably needs refinement - may not be constant
 #define Y_RATIO 0.0830
 
 double* targetResults;
@@ -25,7 +25,7 @@ Target::Target(): Command() {
 	Requires(Robot::chassis.get());
 	Requires(Robot::navX.get());
 	Requires(Robot::shooterActuator.get());
-	SetTimeout(3.0);
+	SetTimeout(2.0);
 }
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
@@ -48,8 +48,8 @@ void Target::Initialize() {
 	double distanceToTargetInches = 144; //(FOCAL_LENGTH * knownWidthInches)/ targetWidth;
 	double moveWidthInches = (distanceToTargetInches * pixelsToMove)/FOCAL_LENGTH;
 
-	//degreesToRotate = pixelsToMove * X_RATIO;
-	degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
+	degreesToRotate = pixelsToMove * X_RATIO;
+	//degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
 
 	Robot::logger->log(
 			//Degrees to Rotate, Current Yaw, Final Degrees, Pixels off target, Center X, Distance From Target, Inches to Rotate, Perspective Width of Target, Center Y, Pixel Width, Pixel Height
@@ -61,10 +61,12 @@ void Target::Initialize() {
 		+ "," + std::to_string(targetY)
 		+ "," + std::to_string(targetWidth)
 		+ "," + std::to_string(targetHeight)
+	    + "," + std::to_string(X_RATIO)
 	);
 
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
+	//Robot::shooterActuator->Aim(840);
 }
 
 void Target::Execute() {
@@ -72,13 +74,21 @@ void Target::Execute() {
 }
 
 bool Target::IsFinished() {
-    return Robot::chassis->OnTarget() || IsTimedOut();
+	bool result = Robot::chassis->OnTarget() || IsTimedOut();
+	if (result){
+
+	}
+    return result;
 }
 
 void Target::End() {
 
 	double finalYaw = Robot::navX->ahrs->GetYaw();
 	Robot::logger->log(	"Final Yaw: " + std::to_string(finalYaw) );
+	double targetX = Robot::targeting->GetTarget()[0];
+	Wait(0.5);
+	Robot::logger->log("Target::IsFinished targetX: " + std::to_string(targetX));
+
 	rightDirection = true;
 	Robot::chassis->Disable();
 }

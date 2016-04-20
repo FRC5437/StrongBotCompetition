@@ -41,12 +41,12 @@ void RobotMap::init() {
     
     shooterCANTalon1.reset(new CANTalon(5));
     shooterCANTalon1->SetControlMode(CANSpeedController::kSpeed);
-    shooterCANTalon1->SetPID(0.1, 0.0, 0.0, 0.036);
+    //shooterCANTalon1->SetPID(0.1, 0.0, 0.0, 0.036);
     lw->AddActuator("Shooter", "CAN Talon 1", shooterCANTalon1);
     
     shooterCANTalon2.reset(new CANTalon(6));
     shooterCANTalon2->SetControlMode(CANSpeedController::kSpeed);
-    shooterCANTalon2->SetPID(0.1, 0.0, 0.0, 0.036);
+   // shooterCANTalon2->SetPID(0.1, 0.0, 0.0, 0.036);
     lw->AddActuator("Shooter", "CAN Talon 2", shooterCANTalon2);
     
     shooterCANTalon3.reset(new CANTalon(7));

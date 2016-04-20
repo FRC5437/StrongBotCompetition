@@ -14,7 +14,7 @@ void PrepShooter::Initialize() {
 }
 
 void PrepShooter::Execute() {
-	Robot::shooterActuator->Aim(110);
+	Robot::shooterActuator->Aim(105);
 }
 
 bool PrepShooter::IsFinished() {

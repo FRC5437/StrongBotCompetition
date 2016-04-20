@@ -4,9 +4,9 @@
 #include "../Commands/DriveRobot.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
-static double kP = 0.05;
-static double kI = 0.00;
-static double kD = 0.00;
+static double kP = 0.04;
+static double kI = 0.015;
+static double kD = 0.08;
 static double kF = 0.0;
 
 Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
@@ -15,8 +15,8 @@ Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
 	robotDrive21 = RobotMap::chassisRobotDrive21;
 	climberShift.reset(new Solenoid(5));
 	SetInputRange(-180.0, 180.0);
-	SetOutputRange(-1.0, 1.0);
-	SetAbsoluteTolerance(0.8);
+	SetOutputRange(-0.5, 0.5);
+	SetAbsoluteTolerance(0.3);
 	GetPIDController()->SetContinuous(true);
 
 }
@@ -30,17 +30,17 @@ void Chassis::UsePIDOutput(double output)
 {
 	if (output > 0.0)
 	{
-		if (output < 0.4)
-		{
-			output = 0.4;
-		}
+		//if (output < 0.2)
+		//{
+			//output = (output + 0.1);
+		//}
 	}
 	else
 	{
-		if (output > -0.4)
-		{
-			output = -0.4;
-		}
+		//if (output > -0.2)
+		//{
+		    //output = (output-0.1);
+		//}
 	}
 
 
@@ -53,11 +53,11 @@ void Chassis::InitDefaultCommand()
 }
 
 void Chassis::Drive(double left, double right) {
-	robotDrive21->TankDrive((left * 0.7), (right * 0.7), false);
+	robotDrive21->TankDrive((left), (right), false);
 }
 
 void Chassis::Drive(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2) {
-	Drive(-joy1->GetRawAxis(1), -joy2->GetRawAxis(1));
+	Drive(-joy1->GetRawAxis(1) * 0.7, -joy2->GetRawAxis(1) * 0.7);
 }
 
 void Chassis::DriveHigh(std::shared_ptr<Joystick> joy1, std::shared_ptr<Joystick> joy2) {

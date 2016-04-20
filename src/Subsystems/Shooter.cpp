@@ -32,16 +32,16 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::Load() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(3000);
+	cANTalon1->SetSetpoint(3800);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(3000);
+	cANTalon2->SetSetpoint(3800);
 }
 
 void Shooter::SpinUpTheWheels() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(-4000);
+	cANTalon1->SetSetpoint(-4500);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(-4000);
+	cANTalon2->SetSetpoint(-4500);
 }
 
 void Shooter::Fire() {
@@ -72,12 +72,12 @@ void Shooter::Loadpos() {
 
 void Shooter::PrepAndFire() {
 	SpinUpTheWheels();
-	Wait(0.3);
-	if ((cANTalon1->GetSpeed() >= -(cANTalon2->GetSpeed() - 10.0))) {
-		if (cANTalon1->GetSpeed() <= -(cANTalon2->GetSpeed() + 10.0)) {
-		Fire();
-		}
-	}
+	//Wait(0.3);
+	//if ((cANTalon1->GetSpeed() >= -(cANTalon2->GetSpeed() - 10.0))) {
+		//if (cANTalon1->GetSpeed() <= -(cANTalon2->GetSpeed() + 10.0)) {
+		//Fire();
+		//}
+	//}
 }
 
 double Shooter::GetRPMs() {
