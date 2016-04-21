@@ -64,6 +64,7 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Cancel();
+	transmission->HighGear();
 }
 
 void Robot::TeleopPeriodic() {

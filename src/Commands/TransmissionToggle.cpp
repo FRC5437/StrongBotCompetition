@@ -14,11 +14,6 @@ void TransmissionToggle::Initialize()
 
 void TransmissionToggle::Execute()
 {
-	if ((Robot::oi->getjoy1()->GetRawButton(1)) && (Robot::oi->getjoy2()->GetRawButton(1))) {
-		Robot::transmission->HighGear();
-	} else {
-		Robot::transmission->LowGear();
-	}
 
 }
 

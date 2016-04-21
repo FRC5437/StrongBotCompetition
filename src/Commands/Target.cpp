@@ -30,7 +30,7 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
 	//Wait(1.0);
-	if (Robot::targeting->HasTarget() == false) {
+	/*if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
 		Wait(0.2);
 		Robot::chassis->Drive(0.0, 0.0);
@@ -67,19 +67,67 @@ void Target::Initialize() {
 	if (OnTarget()){
 		Robot::logger->log("Target believes it is now OnTarget - fire!");
 		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
-	}
+	}*/
 }
 
 void Target::Execute() {
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
+	//One-button targeting - if target is not made, target again. When the target is centered, raise the shooter.
+	if (OnCenterX() == false) {
+		if (Robot::targeting->HasTarget() == false) {
+			Robot::chassis->Drive(0.7, -0.7);
+			Wait(0.2);
+			Robot::chassis->Drive(0.0, 0.0);
+			Wait(0.2);
+		}
+		currentYaw = Robot::navX->ahrs->GetYaw();
+
+		targetResults = Robot::targeting->GetTarget();
+		double targetX = targetResults[0];
+		double targetY = targetResults[1];
+		double targetWidth = targetResults[2];
+		double targetHeight = targetResults[3];
+
+		pixelsToMove = targetX - centerX;
+		degreesToRotate = pixelsToMove * X_RATIO;
+		//degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
+
+		Robot::logger->log(
+				//Degrees to Rotate, Current Yaw, Final Degrees, Pixels off target, Center X, Distance From Target, Inches to Rotate, Perspective Width of Target, Center Y, Pixel Width, Pixel Height
+				"" + std::to_string(degreesToRotate)
+		+ "," + std::to_string(currentYaw)
+		+ "," + std::to_string(currentYaw+degreesToRotate)
+		+ "," + std::to_string(pixelsToMove)
+		+ "," + std::to_string(targetX)
+		+ "," + std::to_string(targetY)
+		+ "," + std::to_string(targetWidth)
+		+ "," + std::to_string(targetHeight)
+		+ "," + std::to_string(X_RATIO)
+		);
+
+		Robot::chassis->Enable();
+		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
+		//Robot::shooterActuator->Aim(840);
+		while (Robot::chassis->OnTarget() == false) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
+			Wait(0.02);
+		}
+			Robot::chassis->Disable();
+	}
+	if (OnCenterX()) {
+		targetResults = Robot::targeting->GetTarget();
+				double targetWidth = targetResults[2];
+				double targetHeight = targetResults[3];
+		Robot::logger->log("Target believes it is now OnTarget - fire!");
+		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
+	}
 }
 
 bool Target::IsFinished() {
-	bool result = Robot::chassis->OnTarget() || IsTimedOut();
+	bool result = OnCenterX();
     return result;
 }
 
-bool Target::OnTarget() {
+bool Target::OnCenterX() {
 	return Robot::targeting->OnTargetX(centerX);
 }
 

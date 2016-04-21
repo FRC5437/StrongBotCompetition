@@ -15,7 +15,7 @@ Transmission::Transmission() :
 
 void Transmission::InitDefaultCommand()
 {
-	SetDefaultCommand(new TransmissionToggle());
+	//SetDefaultCommand(new TransmissionToggle());
 }
 
 void Transmission::HighGear() {

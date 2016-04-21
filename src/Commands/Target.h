@@ -31,7 +31,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 
-	bool OnTarget();
+	bool OnCenterX();
 
 private:
 };
