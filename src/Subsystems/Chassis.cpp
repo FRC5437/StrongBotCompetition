@@ -4,8 +4,8 @@
 #include "../Commands/DriveRobot.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
-static double kP = 0.04;
-static double kI = 0.02;
+static double kP = 0.05;
+static double kI = 0.0275;
 static double kD = 0.08;
 static double kF = 0.0;
 
@@ -15,7 +15,7 @@ Chassis::Chassis() : PIDSubsystem("Chassis", kP, kI, kD, kF) {
 	robotDrive21 = RobotMap::chassisRobotDrive21;
 	climberShift.reset(new Solenoid(5));
 	SetInputRange(-180.0, 180.0);
-	SetOutputRange(-0.5, 0.5);
+	SetOutputRange(-0.6, 0.6);
 	SetAbsoluteTolerance(0.3);
 	GetPIDController()->SetContinuous(true);
 

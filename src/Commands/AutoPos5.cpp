@@ -25,7 +25,7 @@ AutoPos5::AutoPos5() {
 
 
 	AddSequential(new CrossDefense(5));
-	AddSequential(new TurnLeft(0.6));
+	AddSequential(new RotateDegrees(-30));
 	AddSequential(new CenterOnTarget());
 	AddSequential(new ShooterAngleAutonomous(840));
 	AddSequential(new FireBoulder());

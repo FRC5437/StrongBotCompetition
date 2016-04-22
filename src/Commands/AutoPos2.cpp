@@ -27,7 +27,7 @@ AutoPos2::AutoPos2() {
 
 
 	AddSequential(new CrossDefense(4.0));
-	AddSequential(new TurnRight(0.8));
+	AddSequential(new RotateDegrees(60));
 	AddSequential(new CenterOnTarget());
 	AddSequential(new ShooterAngleAutonomous(840));
 	AddSequential(new FireBoulder());

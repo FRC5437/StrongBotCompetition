@@ -9,6 +9,8 @@
 #include "PrepShooter.h"
 #include "FireBoulder.h"
 #include "TurnRight.h"
+#include "RotateDegrees.h"
+
 #include "DriveToDistance.h"
 #include "CenterOnTarget.h"
 #include "ShooterAngleAutonomous.h"
@@ -21,7 +23,7 @@
 
 AutoPos1::AutoPos1() {
 
-	double duration_seconds = 4.0;
+	double duration_seconds = 4.25;
 	double rotation_seconds = 0.6;
 
 	AddParallel(new ResetYaw());
@@ -31,7 +33,7 @@ AutoPos1::AutoPos1() {
 	AddSequential(new WaitDuration(1.5));
 
 	AddSequential(new CrossDefense(duration_seconds));
-	AddSequential(new TurnRight(rotation_seconds));
+	AddSequential(new RotateDegrees(60));
 	AddSequential(new CenterOnTarget());
 
 	AddSequential(new PrepShooter());
