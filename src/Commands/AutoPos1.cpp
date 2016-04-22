@@ -21,7 +21,7 @@
 
 AutoPos1::AutoPos1() {
 
-	double duration_seconds = 2.5;
+	double duration_seconds = 4.0;
 	double rotation_seconds = 0.6;
 
 	AddParallel(new ResetYaw());
@@ -33,8 +33,6 @@ AutoPos1::AutoPos1() {
 	AddSequential(new CrossDefense(duration_seconds));
 	AddSequential(new TurnRight(rotation_seconds));
 	AddSequential(new CenterOnTarget());
-	AddSequential(new ShooterAngleAutonomous(840));
-	AddSequential(new FireBoulder());
 
 	AddSequential(new PrepShooter());
 

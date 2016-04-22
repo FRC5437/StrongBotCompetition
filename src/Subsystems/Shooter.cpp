@@ -32,9 +32,9 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::Load() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(3800);
+	cANTalon1->SetSetpoint(4000);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(3800);
+	cANTalon2->SetSetpoint(4000);
 }
 
 void Shooter::SpinUpTheWheels() {

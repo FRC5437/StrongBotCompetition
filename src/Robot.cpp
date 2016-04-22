@@ -52,7 +52,7 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 	autonomousCommand.reset((Command*) chooser->GetSelected());
-
+	transmission->LowGear();
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }

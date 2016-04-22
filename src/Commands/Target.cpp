@@ -109,7 +109,7 @@ void Target::Execute() {
 		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 		//Robot::shooterActuator->Aim(840);
 		while (Robot::chassis->OnTarget() == false) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
-			Wait(0.02);
+			Wait(0.6);
 		}
 			Robot::chassis->Disable();
 	}

@@ -8,6 +8,6 @@ CenterOnTarget::CenterOnTarget()
 {
 
 	AddSequential(new Target());
-	Wait (0.5);
+	Wait (0.75);
 	AddSequential(new FireBoulder());
 }
