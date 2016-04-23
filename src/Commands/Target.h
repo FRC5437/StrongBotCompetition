@@ -32,6 +32,7 @@ public:
 	virtual void Interrupted();
 
 	bool OnCenterX();
+	void Retarget();
 
 private:
 };

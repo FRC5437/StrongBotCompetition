@@ -25,12 +25,11 @@ Target::Target(): Command() {
 	Requires(Robot::chassis.get());
 	Requires(Robot::navX.get());
 	Requires(Robot::shooterActuator.get());
-	SetTimeout(2.0);
 }
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
 	//Wait(1.0);
-	/*if (Robot::targeting->HasTarget() == false) {
+	if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
 		Wait(0.2);
 		Robot::chassis->Drive(0.0, 0.0);
@@ -64,59 +63,27 @@ void Target::Initialize() {
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 	//Robot::shooterActuator->Aim(840);
-	if (OnTarget()){
+	if (OnCenterX()){
 		Robot::logger->log("Target believes it is now OnTarget - fire!");
 		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
-	}*/
+	}
 }
 
 void Target::Execute() {
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
 	//One-button targeting - if target is not made, target again. When the target is centered, raise the shooter.
 	if (OnCenterX() == false) {
-		if (Robot::targeting->HasTarget() == false) {
-			Robot::chassis->Drive(0.7, -0.7);
-			Wait(0.2);
-			Robot::chassis->Drive(0.0, 0.0);
-			Wait(0.2);
-		}
-		currentYaw = Robot::navX->ahrs->GetYaw();
-
-		targetResults = Robot::targeting->GetTarget();
-		double targetX = targetResults[0];
-		double targetY = targetResults[1];
-		double targetWidth = targetResults[2];
-		double targetHeight = targetResults[3];
-
-		pixelsToMove = targetX - centerX;
-		degreesToRotate = pixelsToMove * X_RATIO;
-		//degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
-
-		Robot::logger->log(
-				//Degrees to Rotate, Current Yaw, Final Degrees, Pixels off target, Center X, Distance From Target, Inches to Rotate, Perspective Width of Target, Center Y, Pixel Width, Pixel Height
-				"" + std::to_string(degreesToRotate)
-		+ "," + std::to_string(currentYaw)
-		+ "," + std::to_string(currentYaw+degreesToRotate)
-		+ "," + std::to_string(pixelsToMove)
-		+ "," + std::to_string(targetX)
-		+ "," + std::to_string(targetY)
-		+ "," + std::to_string(targetWidth)
-		+ "," + std::to_string(targetHeight)
-		+ "," + std::to_string(X_RATIO)
-		);
-
-		Robot::chassis->Enable();
-		Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 		//Robot::shooterActuator->Aim(840);
-		while (Robot::chassis->OnTarget() == false) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
-			Wait(0.6);
-		}
+		if (Robot::chassis->OnTarget() == true) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
 			Robot::chassis->Disable();
+			Wait(0.1);
+			Retarget();
+		}
 	}
 	if (OnCenterX()) {
 		targetResults = Robot::targeting->GetTarget();
-				double targetWidth = targetResults[2];
-				double targetHeight = targetResults[3];
+		double targetWidth = targetResults[2];
+		double targetHeight = targetResults[3];
 		Robot::logger->log("Target believes it is now OnTarget - fire!");
 		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
 	}
@@ -132,11 +99,6 @@ bool Target::OnCenterX() {
 }
 
 void Target::End() {
-	double finalYaw = Robot::navX->ahrs->GetYaw();
-	Robot::logger->log(	"Final Yaw: " + std::to_string(finalYaw) );
-	double targetX = Robot::targeting->GetTarget()[0];
-	Robot::logger->log("Target::IsFinished targetX: " + std::to_string(targetX));
-
 	rightDirection = true;
 	Robot::chassis->Disable();
 }
@@ -144,4 +106,40 @@ void Target::End() {
 
 void Target::Interrupted() {
 	Robot::chassis->Disable();
+}
+
+void Target::Retarget() {
+	if (Robot::targeting->HasTarget() == false) {
+		Robot::chassis->Drive(0.7, -0.7);
+		Wait(0.2);
+		Robot::chassis->Drive(0.0, 0.0);
+		Wait(0.2);
+	}
+	currentYaw = Robot::navX->ahrs->GetYaw();
+
+	targetResults = Robot::targeting->GetTarget();
+	double targetX = targetResults[0];
+	double targetY = targetResults[1];
+	double targetWidth = targetResults[2];
+	double targetHeight = targetResults[3];
+
+	pixelsToMove = targetX - centerX;
+	degreesToRotate = pixelsToMove * X_RATIO;
+	//degreesToRotate = asin(moveWidthInches/distanceToTargetInches) * 180 / PI;
+
+	Robot::logger->log(
+			//Degrees to Rotate, Current Yaw, Final Degrees, Pixels off target, Center X, Distance From Target, Inches to Rotate, Perspective Width of Target, Center Y, Pixel Width, Pixel Height
+			"" + std::to_string(degreesToRotate)
+	+ "," + std::to_string(currentYaw)
+	+ "," + std::to_string(currentYaw+degreesToRotate)
+	+ "," + std::to_string(pixelsToMove)
+	+ "," + std::to_string(targetX)
+	+ "," + std::to_string(targetY)
+	+ "," + std::to_string(targetWidth)
+	+ "," + std::to_string(targetHeight)
+	+ "," + std::to_string(X_RATIO)
+	);
+
+	Robot::chassis->Enable();
+	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 }
