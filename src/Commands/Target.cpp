@@ -72,20 +72,19 @@ void Target::Initialize() {
 void Target::Execute() {
 	SmartDashboard::PutNumber("Yaw", Robot::navX->ahrs->GetYaw());
 	//One-button targeting - if target is not made, target again. When the target is centered, raise the shooter.
-	if (OnCenterX() == false) {
 		//Robot::shooterActuator->Aim(840);
-		if (Robot::chassis->OnTarget() == true) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
-			Robot::chassis->Disable();
-			Wait(0.1);
+	if (Robot::chassis->OnTarget()) { //Checks if the PID subsystem is where we told it to go. Doesn't mean it's where we WANT it to go.
+		Robot::chassis->Disable();
+		Wait(0.5);
+		if (OnCenterX() == false) {
 			Retarget();
+		} else {
+			targetResults = Robot::targeting->GetTarget();
+			double targetWidth = targetResults[2];
+			double targetHeight = targetResults[3];
+			Robot::logger->log("Target believes it is now OnTarget - fire!");
+			Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
 		}
-	}
-	if (OnCenterX()) {
-		targetResults = Robot::targeting->GetTarget();
-		double targetWidth = targetResults[2];
-		double targetHeight = targetResults[3];
-		Robot::logger->log("Target believes it is now OnTarget - fire!");
-		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
 	}
 }
 
