@@ -2,12 +2,14 @@
 #include "Target.h"
 #include "FireBoulder.h"
 #include "ShooterAngleAutonomous.h"
+#include "WaitDuration.h"
 #include "PrepShooter.h"
 
 CenterOnTarget::CenterOnTarget()
 {
 
 	AddSequential(new Target());
-	Wait (0.75);
+	AddSequential(new WaitCommand(0.35));
+	AddSequential(new PrintCommand("CenterOnTarget - done with Target about to FireBoulder"));
 	AddSequential(new FireBoulder());
 }

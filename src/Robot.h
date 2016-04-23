@@ -25,6 +25,7 @@
 #include "Commands/AutoPos3.h"
 #include "Commands/AutoPos4.h"
 #include "Commands/AutoPos5.h"
+#include "Commands/CDFAutoTarLeft.h"
 
 class Robot : public IterativeRobot {
 public:

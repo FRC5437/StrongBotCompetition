@@ -39,6 +39,7 @@ void Robot::RobotInit() {
 	chooser->AddObject("Position 1", new AutoPos1());
 	chooser->AddObject("Position 2", new AutoPos2());
 	chooser->AddObject("Position 5", new AutoPos5());
+	chooser->AddObject("CDF", new CDFAutoTarLeft());
 	SmartDashboard::PutData("Auto Modes", chooser.get());
   }
 
