@@ -23,6 +23,7 @@
  */
 class Target: public Command {
 public:
+	bool isTargeted;
 	Target();
 
 	virtual void Initialize();

@@ -34,10 +34,10 @@ AutoPos1::AutoPos1() {
 
 	AddSequential(new CrossDefense(duration_seconds));
 	AddSequential(new HighGear());
-	AddSequential(new CrossDefense(0.8));
+	AddSequential(new CrossDefense(0.95));
 	AddSequential(new WaitCommand(0.4));
 	AddSequential(new PrintCommand("About to RotateDegrees..."));
-	AddSequential(new RotateDegrees(40));
+	AddSequential(new RotateDegrees(50));
 	AddSequential(new WaitCommand(0.4));
 	AddSequential(new PrintCommand("About to CenterOnTarget..."));
 	AddSequential(new CenterOnTarget());

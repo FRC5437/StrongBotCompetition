@@ -25,6 +25,7 @@ Target::Target(): Command() {
 	Requires(Robot::chassis.get());
 	Requires(Robot::navX.get());
 	Requires(Robot::shooterActuator.get());
+	isTargeted = false;
 }
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
@@ -84,13 +85,13 @@ void Target::Execute() {
 			double targetHeight = targetResults[3];
 			Robot::logger->log("Target believes it is now OnTarget - fire!");
 			Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
+			isTargeted = true;
 		}
 	}
 }
 
 bool Target::IsFinished() {
-	bool result = OnCenterX();
-    return result;
+    return isTargeted;
 }
 
 bool Target::OnCenterX() {
@@ -98,7 +99,7 @@ bool Target::OnCenterX() {
 }
 
 void Target::End() {
-	rightDirection = true;
+	isTargeted = false;
 	Robot::chassis->Disable();
 }
 
