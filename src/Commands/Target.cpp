@@ -14,7 +14,10 @@ double targetDistance; //distance between camera and target
 double pixelsToMove; //quite literally the difference between the two detected centers
 double degreesToRotate;
 double currentYaw;
-const double centerX = 255.0;
+const double defaultCenterX = 255.0;
+const double defaultElevatorBaselinke = 840.0;
+double centerX = defaultCenterX;
+double elevatorBaseline = defaultElevatorBaseline;
 const double tolX = 7.0;
 
 bool rightDirection = true;
@@ -30,6 +33,10 @@ Target::Target(): Command() {
 void Target::Initialize() {
 	//Robot::shooterActuator->Aim(600);
 	//Wait(1.0);
+	centerX = Preferences::GetInstance()->GetDouble("configCenterX", defaultCenterX);
+	elevatorBaseline = Preferences::GetInstance()->GetDouble("configElevatorBaseline", defaultElevatorBaseline);
+	Robot::logger->log("Updating from preferences - centerX: " + std::to_string(centerX) + " elevatorBaseline: " + std::to_string(elevatorBaseline));
+		
 	if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
 		Wait(0.2);
@@ -78,10 +85,9 @@ void Target::Execute() {
 			targetResults = Robot::targeting->GetTarget();
 			double targetWidth = targetResults[2];
 			double targetHeight = targetResults[3];
-			double elevatorLevel = 835;
 			double elevatorAdjustment = Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight);
-			Robot::logger->log("Target believes it is now OnTarget - fire with elevator: " + std::to_string(elevatorLevel) + "," + std::to_string(elevatorAdjustment) + "," + std::to_string(targetWidth) + "," + std::to_string(targetHeight));
-			Robot::shooterActuator->Aim(elevatorLevel + elevatorAdjustment);
+			Robot::logger->log("Target believes it is now OnTarget - fire with elevator: " + std::to_string(elevatorBaseline) + "," + std::to_string(elevatorAdjustment) + "," + std::to_string(targetWidth) + "," + std::to_string(targetHeight));
+			Robot::shooterActuator->Aim(elevatorBaseline + elevatorAdjustment);
 			isTargeted = true;
 		}
 	}
