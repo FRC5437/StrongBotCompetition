@@ -13,4 +13,5 @@ CenterOnTarget::CenterOnTarget()
 	AddSequential(new PrintCommand("CenterOnTarget - done with Target about to FireBoulder"));
 	AddSequential(new FireBoulder());
 	AddSequential(new WaitCommand(0.35));
+	AddSequential(new PrepShooter());
 }
