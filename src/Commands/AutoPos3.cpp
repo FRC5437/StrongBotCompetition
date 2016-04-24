@@ -13,7 +13,7 @@
 #include "LowerClimber.h"
 #include "EngageChassis.h"
 #include "ResetYaw.h"
-
+#include "HighGear.h"
 
 
 AutoPos3::AutoPos3() {
@@ -22,10 +22,9 @@ AutoPos3::AutoPos3() {
 	AddParallel(new PrepShooter());
 	AddParallel(new EngageChassis());
 	AddSequential(new LowerClimber());
-
-
-	AddSequential(new CrossDefense(4));
+	AddSequential(new WaitCommand(1.0));
+	AddSequential(new CrossDefense(2.0));
+	AddSequential(new HighGear());
+	AddSequential(new CrossDefense(0.7));
 	AddSequential(new CenterOnTarget());
-	AddSequential(new ShooterAngleAutonomous(840));
-	AddSequential(new FireBoulder());
 }

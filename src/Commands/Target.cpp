@@ -32,7 +32,8 @@ void Target::Initialize() {
 	//Wait(1.0);
 	if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
-		Wait(0.2);
+		Robot::logger->log("Wheeeeeeee!");
+		Wait(0.5);
 		Robot::chassis->Drive(0.0, 0.0);
 		Wait(0.5);
 	}
@@ -78,7 +79,7 @@ void Target::Execute() {
 			targetResults = Robot::targeting->GetTarget();
 			double targetWidth = targetResults[2];
 			double targetHeight = targetResults[3];
-			double elevatorLevel = 835;
+			double elevatorLevel = 830;
 			double elevatorAdjustment = Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight);
 			Robot::logger->log("Target believes it is now OnTarget - fire with elevator: " + std::to_string(elevatorLevel) + "," + std::to_string(elevatorAdjustment) + "," + std::to_string(targetWidth) + "," + std::to_string(targetHeight));
 			Robot::shooterActuator->Aim(elevatorLevel + elevatorAdjustment);
