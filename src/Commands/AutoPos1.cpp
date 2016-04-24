@@ -23,7 +23,7 @@
 
 AutoPos1::AutoPos1() {
 
-	double duration_seconds = 2.0;
+	double duration_seconds = 1.75;
 	double rotation_seconds = 0.6;
 
 	AddParallel(new ResetYaw());

@@ -15,7 +15,7 @@ void FireBoulder::Initialize() {
 void FireBoulder::Execute() {
 	SmartDashboard::PutNumber("Left Speed", Robot::shooter->GetLeftSpeed());
 	SmartDashboard::PutNumber("Right Speed", -Robot::shooter->GetRightSpeed());
-	if (Robot::shooter->GetLeftSpeed() > 4490.0 && -Robot::shooter->GetRightSpeed() > 4490.0) {
+	if (Robot::shooter->GetLeftSpeed() > 4390.0 && -Robot::shooter->GetRightSpeed() > 4390.0) {
 		//if (Robot::shooter->GetLeftSpeed() <= -(Robot::shooter->GetRightSpeed() + 50.0)) {
 	      //if (Robot::shooter->GetLeftSpeed() >= -(Robot::shooter->GetRightSpeed() - 50.0)) {
 		        Wait (0.3);

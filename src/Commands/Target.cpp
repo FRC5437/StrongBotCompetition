@@ -34,7 +34,7 @@ void Target::Initialize() {
 		Robot::chassis->Drive(0.7, -0.7);
 		Wait(0.2);
 		Robot::chassis->Drive(0.0, 0.0);
-		Wait(0.2);
+		Wait(0.5);
 	}
 	currentYaw = Robot::navX->ahrs->GetYaw();
 
@@ -63,11 +63,6 @@ void Target::Initialize() {
 
 	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
-	//Robot::shooterActuator->Aim(840);
-	if (OnCenterX()){
-		Robot::logger->log("Target believes it is now OnTarget - fire!");
-		Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
-	}
 }
 
 void Target::Execute() {
@@ -83,8 +78,10 @@ void Target::Execute() {
 			targetResults = Robot::targeting->GetTarget();
 			double targetWidth = targetResults[2];
 			double targetHeight = targetResults[3];
-			Robot::logger->log("Target believes it is now OnTarget - fire!");
-			Robot::shooterActuator->Aim(840 + Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight));
+			double elevatorLevel = 835;
+			double elevatorAdjustment = Robot::targeting->AdjustTargetingBasedOnArea(targetWidth, targetHeight);
+			Robot::logger->log("Target believes it is now OnTarget - fire with elevator: " + std::to_string(elevatorLevel) + "," + std::to_string(elevatorAdjustment) + "," + std::to_string(targetWidth) + "," + std::to_string(targetHeight));
+			Robot::shooterActuator->Aim(elevatorLevel + elevatorAdjustment);
 			isTargeted = true;
 		}
 	}
@@ -113,7 +110,7 @@ void Target::Retarget() {
 		Robot::chassis->Drive(0.7, -0.7);
 		Wait(0.2);
 		Robot::chassis->Drive(0.0, 0.0);
-		Wait(0.2);
+		Wait(0.5);
 	}
 	currentYaw = Robot::navX->ahrs->GetYaw();
 

@@ -39,9 +39,9 @@ void Shooter::Load() {
 
 void Shooter::SpinUpTheWheels() {
 	cANTalon1->Enable();
-	cANTalon1->SetSetpoint(-4500);
+	cANTalon1->SetSetpoint(-4400);
 	cANTalon2->Enable();
-	cANTalon2->SetSetpoint(-4500);
+	cANTalon2->SetSetpoint(-4400);
 }
 
 void Shooter::Fire() {
