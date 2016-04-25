@@ -40,8 +40,7 @@ void Target::Initialize() {
 	if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
 		Robot::logger->log("Wheeeeeeee!");
-		Wait(0.5
-				);
+		Wait(0.25);
 		Robot::chassis->Drive(0.0, 0.0);
 		Wait(0.5);
 	}
