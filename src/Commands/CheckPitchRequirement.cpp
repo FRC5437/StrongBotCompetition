@@ -10,9 +10,9 @@ CheckPitchRequirement::CheckPitchRequirement()
 // Called just before this Command runs the first time
 void CheckPitchRequirement::Initialize()
 {
-	scheduler = Scheduler::GetInstance();
-if (Robot::navX->ahrs->GetPitch() < 0) {
-	scheduler->RemoveAll();
+if (Robot::navX->ahrs->GetRoll() >	 -8.0) {
+	Robot::logger->log("Roll check failed, remove all commands from scheduler");
+	Scheduler::GetInstance()->RemoveAll();
 }
 }
 

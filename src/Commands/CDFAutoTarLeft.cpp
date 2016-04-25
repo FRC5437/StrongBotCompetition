@@ -11,12 +11,14 @@
 #include "HighGear.h"
 CDFAutoTarLeft::CDFAutoTarLeft()
 {
-	AddSequential(new CrossDefense(1.10));
+	AddSequential(new CrossDefense(0.85));
 	AddSequential(new LowerClimber());
 	AddSequential(new WaitCommand(1.5));
 	AddSequential(new CrossDefense(0.5));
+	AddSequential(new WaitCommand(1.0));
 	AddSequential(new CheckPitchRequirement());
-	AddSequential(new HighGear());
-	AddSequential(new CrossDefense(0.5));
-	AddSequential(new CenterOnTarget());
+	//AddSequential(new HighGear());
+	//AddSequential(new CrossDefense(0.5));
+	//AddSequential(new CenterOnTarget());
+	AddSequential(new FireBoulder());
 }
