@@ -40,7 +40,8 @@ void Target::Initialize() {
 	if (Robot::targeting->HasTarget() == false) {
 		Robot::chassis->Drive(0.7, -0.7);
 		Robot::logger->log("Wheeeeeeee!");
-		Wait(0.5);
+		Wait(0.5
+				);
 		Robot::chassis->Drive(0.0, 0.0);
 		Wait(0.5);
 	}
@@ -68,6 +69,7 @@ void Target::Initialize() {
 		+ "," + std::to_string(targetHeight)
 	    + "," + std::to_string(X_RATIO)
 	);
+
 
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
 	Robot::chassis->Enable();
