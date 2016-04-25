@@ -59,7 +59,7 @@ OI::OI() {
     joy1.reset(new Joystick(0));
     
     b1_3.reset(new JoystickButton(joy1.get(), 3));
-    b1_3->WhenPressed(new RotateAbsoluteDegrees());
+   // b1_3->WhenPressed(new RotateAbsoluteDegrees());
     b1_4.reset(new JoystickButton(joy1.get(), 4));
     b1_4->WhenPressed(new LoadBoulder());
 

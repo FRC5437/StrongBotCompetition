@@ -38,7 +38,7 @@ AutoPos1::AutoPos1() {
 	AddSequential(new WaitCommand(0.4));
 	AddSequential(new PrintCommand("About to RotateDegrees..."));
 	AddSequential(new RotateDegrees(50));
-	AddSequential(new WaitCommand(0.4));
+	AddSequential(new WaitCommand(0.6));
 	AddSequential(new PrintCommand("About to CenterOnTarget..."));
 	AddSequential(new CenterOnTarget());
 

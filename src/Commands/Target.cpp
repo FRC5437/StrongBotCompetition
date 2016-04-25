@@ -69,8 +69,9 @@ void Target::Initialize() {
 	    + "," + std::to_string(X_RATIO)
 	);
 
-	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
+	Robot::chassis->Enable();
+
 }
 
 void Target::Execute() {
@@ -92,6 +93,9 @@ void Target::Execute() {
 			Robot::shooterActuator->Aim(elevatorBaseline + elevatorAdjustment);
 			isTargeted = true;
 		}
+	}
+	else{
+		Robot::logger->log("Robot::chassis->OnTarget() returns false");
 	}
 }
 
@@ -145,6 +149,7 @@ void Target::Retarget() {
 	+ "," + std::to_string(X_RATIO)
 	);
 
-	Robot::chassis->Enable();
 	Robot::chassis->SetSetpoint(currentYaw+degreesToRotate);
+	Robot::chassis->Enable();
+
 }

@@ -5,7 +5,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
 static double kP = 0.05;
-static double kI = 0.0275;
+static double kI = 0.03;
 static double kD = 0.08;
 static double kF = 0.0;
 
@@ -28,22 +28,6 @@ double Chassis::ReturnPIDInput()
 
 void Chassis::UsePIDOutput(double output)
 {
-	if (output > 0.0)
-	{
-		//if (output < 0.2)
-		//{
-			//output = (output + 0.1);
-		//}
-	}
-	else
-	{
-		//if (output > -0.2)
-		//{
-		    //output = (output-0.1);
-		//}
-	}
-
-
 	Drive(output, -output);
 }
 

@@ -29,7 +29,7 @@ bool RotateDegrees::IsFinished() {
 
 void RotateDegrees::End() {
 rightDir = false;
-Robot::chassis->Drive(0.0,0.0);
+Robot::chassis->Disable();
 }
 
 void RotateDegrees::Interrupted() {
