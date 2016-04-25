@@ -22,6 +22,10 @@
 
 
 AutoPos2::AutoPos2() {
+	const int defaultDegreesToRotate = 40;
+	int degreesToRotate = Preferences::GetInstance()->GetInt("auto2AngleToRotate", defaultDegreesToRotate);
+	Robot::logger->log("Updating from preferences auto2AngleToRotate - degreesToRotate: " + std::to_string(degreesToRotate));
+
 	AddParallel(new ResetYaw());
 	AddParallel(new PrepShooter());
 	AddParallel(new EngageChassis());
@@ -31,7 +35,7 @@ AutoPos2::AutoPos2() {
 	AddSequential(new HighGear());
 	AddSequential(new CrossDefense(0.8));
 	AddSequential(new WaitCommand(0.4));
-	AddSequential(new RotateDegrees(40));
+	AddSequential(new RotateDegrees(degreesToRotate));
 	AddSequential(new WaitCommand(0.6));
 	AddSequential(new CenterOnTarget());
 }

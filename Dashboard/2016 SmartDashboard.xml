@@ -1,5 +1,16 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="278" y="505"/>
+		<height>306</height>
+		<property name="Upper Limit" value="180.0"/>
+		<property name="Lower Limit" value="-180.0"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="2195" y="12"/>
+		<width>558</width>
+		<height>507</height>
+	</static-widget>
 	<widget field="Total Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="1090"/>
 	</widget>
@@ -42,9 +53,6 @@
 	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="820"/>
 	</widget>
-	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="793"/>
-	</widget>
 	<widget field="CrossDefense" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="753"/>
 	</widget>
@@ -79,7 +87,7 @@
 		<location x="21" y="267"/>
 	</widget>
 	<widget field="Auto Modes" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="420" y="81"/>
+		<location x="375" y="81"/>
 	</widget>
 	<widget field="RotateDegrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="227"/>

@@ -10,8 +10,9 @@ CheckPitchRequirement::CheckPitchRequirement()
 // Called just before this Command runs the first time
 void CheckPitchRequirement::Initialize()
 {
-if (Robot::navX->ahrs->GetRoll() >	 -8.0) {
-	Robot::logger->log("Roll check failed, remove all commands from scheduler");
+	float rollValue = Robot::navX->ahrs->GetRoll();
+if (rollValue >	 -8.0) {
+	Robot::logger->log("Roll check failed, remove all commands from scheduler - reading was Roll = " + std::to_string(rollValue));
 	Scheduler::GetInstance()->RemoveAll();
 }
 }
